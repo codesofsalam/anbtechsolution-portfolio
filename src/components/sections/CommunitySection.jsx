@@ -1,11 +1,11 @@
 // src/components/sections/CommunitySection.jsx
 import React from 'react';
-import { Twitter, Twitch, Discord, Youtube, Star, Trophy, Users } from 'lucide-react';
+import { Twitter, Twitch, Youtube, Star, Trophy, Users, DiscIcon } from 'lucide-react';
 
 const CommunitySection = () => {
   const communities = [
     {
-      icon: Discord,
+      icon: DiscIcon,
       title: 'Discord Realm',
       description: 'Join our Discord server to connect with fellow adventurers',
       members: '50K+',

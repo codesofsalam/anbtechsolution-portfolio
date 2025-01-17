@@ -6,7 +6,7 @@ import HeroSection from './components/sections/HeroSection';
 import StatsSection from './components/sections/StatsSection';
 import GamesSection from './components/sections/GamesSection';
 import CommunitySection from './components/sections/CommunitySection';
-import { initializeAnimations } from './utils/animations';
+import { initializeAnimations } from './components/utils/Animations'
 
 const App = () => {
   useEffect(() => {
