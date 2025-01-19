@@ -1,6 +1,5 @@
 // src/components/sections/HeroSection.jsx
-import { PlayIcon } from 'lucide-react';
-
+import { PlayIcon } from "lucide-react";
 
 const HeroSection = () => {
   return (
@@ -13,12 +12,13 @@ const HeroSection = () => {
           muted
           className="w-full h-full object-cover"
           poster="/api/placeholder/1920/1080"
+          onError={(e) => console.error("Video failed to load:", e)}
         >
           <source src="/api/placeholder/video" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-transparent" />
       </div>
-      
+
       {/* Content */}
       <div className="relative z-10 h-full flex flex-col justify-center px-6">
         <div className="max-w-4xl">
@@ -41,7 +41,5 @@ const HeroSection = () => {
     </div>
   );
 };
-
-
 
 export default HeroSection;
