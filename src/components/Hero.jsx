@@ -9,10 +9,10 @@ const Hero = () => {
           in the Digital Age</h1>
           <p className="text-lg mb-10 opacity-90">As a leading digital services provider, we specialize in crafting custom mobile apps for iOS and Android, along with tailored marketing strategies, e-commerce solutions, and innovative UI/UX design. Our expertise ensures your digital projects stand out, driving growth and engagement across platforms.</p>
           <a 
-            href="#" 
+            href="/projects" 
             className="inline-block bg-purple-500 text-white px-8 py-4 rounded-md hover:bg-purple-600 transition-colors duration-300"
           >
-            See Our Work
+            See Our Work {'>'}
           </a>
         </div>
         <div className="w-1/2">

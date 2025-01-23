@@ -24,8 +24,8 @@ const Footer = () => {
       <div className="container mx-auto px-4 grid md:grid-cols-3 gap-8">
         <div>
           <div className="flex items-center mb-4">
-            <img src="/logo.png" alt="OrbiMatrix" className="h-10 mr-4" />
-            <span className="text-white font-bold text-xl">OrbiMatrix</span>
+            <img src="/logo.png" alt="ANB Tech Solution" className="h-10 mr-4" />
+          
           </div>
           <p className="text-gray-400">
             Innovative digital solutions at the intersection of Web3, AI, and mobile technologies.

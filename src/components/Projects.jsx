@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Code, ExternalLink } from 'lucide-react';
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('All');
@@ -9,31 +8,28 @@ const Projects = () => {
   const projects = [
     {
       name: 'C&S Limousine Service',
-      category: 'Web Deve',
-      description: 'Blockchain-powered trivia game with play-to-earn mechanics',
+      category: 'Web App',
+      description: 'C&S Limousine Services provides premium chauffeur services for any occasion. They have a fleet of luxury vehicles and employ professional, courteous drivers to ensure a comfortable and reliable transportation experience.',
       image: '/limousine.PNG',
-      technologies: ['Solidity', 'React', 'Web3.js'],
-      githubLink: '#',
-      liveLink: '#'
-    },
+      fullImage: '/limousine-full.png', 
    
+    },
+    
     {
       name: 'OIB-Online Islamic Book App',
       category: 'Mobile App',
-      description: 'Agricultural staking game with NFT farming mechanics',
+      description: 'Online Islamic Book is an e-commerce platform that sells a wide variety of Islamic books, including the Noble Quran, books on the life of Prophet Muhammad, and other educational and reference materials related to Islam. They offer fast shipping and a secure online ordering process.',
       image: '/oib.PNG',
-      technologies: ['Solidity', 'Unity', 'Web3.js'],
-      githubLink: '#',
-      liveLink: '#'
+      fullImage: '/oib2.jpg', 
+    
     },
     {
       name: 'Salah Tracker',
       category: 'Mobile App',
-      description: 'Decentralized platform for community-driven wish fulfillment',
+      description: 'The Salah Tracker is a mobile application that helps users track their daily prayers (salah) and other Islamic practices like learning the Quran, remembering Allah\'s \'99\' names, and counting tasbeeh. It provides prayer timing reminders and logs user\'s religious activities.',
       image: '/salahapp.PNG',
-      technologies: ['Next.js', 'Ethereum', 'IPFS'],
-      githubLink: '#',
-      liveLink: '#'
+      fullImage: '/salahtracker.jpg', 
+    
     }
   ];
 
@@ -44,7 +40,7 @@ const Projects = () => {
     : projects.filter(p => p.category === activeFilter);
 
   return (
-    <section className="bg-gray-800 py-20">
+    <section className="bg-[#282828] py-20">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-white mb-4">Our Innovative Projects</h2>
@@ -63,7 +59,7 @@ const Projects = () => {
                 px-4 py-2 rounded-md transition-colors 
                 ${activeFilter === category 
                   ? 'bg-purple-600 text-white' 
-                  : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                  : 'bg-[#111827] text-gray-300 hover:bg-gray-600'
                 }
               `}
             >
@@ -94,7 +90,7 @@ const Projects = () => {
                   className="w-full h-48 object-cover" 
                 />
               </div>
-              <div className="p-6">
+              <div className="p-6 bg-purple-600">
                 <h3 className="text-xl font-bold text-white mb-2">
                   {project.name}
                 </h3>
@@ -105,54 +101,34 @@ const Projects = () => {
 
         {/* Project Modal */}
         {selectedProject && (
-          <div 
-            className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
-            onClick={() => setSelectedProject(null)}
-          >
-            <div 
-              className="bg-gray-900 max-w-2xl w-full rounded-lg overflow-hidden"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <img 
-                src={selectedProject.image} 
-                alt={selectedProject.name} 
-                className="w-full h-96 object-cover" 
-              />
-              <div className="p-8">
-                <h3 className="text-2xl font-bold text-white mb-4">
-                  {selectedProject.name}
-                </h3>
-                <p className="text-gray-400 mb-4">
-                  {selectedProject.description}
-                </p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {selectedProject.technologies.map(tech => (
-                    <span 
-                      key={tech} 
-                      className="bg-purple-500/20 text-purple-300 px-2 py-1 rounded-md text-xs"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-                <div className="flex space-x-4">
-                  <a 
-                    href={selectedProject.githubLink} 
-                    className="bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700"
-                  >
-                    GitHub
-                  </a>
-                  <a 
-                    href={selectedProject.liveLink} 
-                    className="bg-gray-700 text-white px-4 py-2 rounded-md hover:bg-gray-600"
-                  >
-                    Live Site
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
+  <div 
+    className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-8"
+    onClick={() => setSelectedProject(null)}
+  >
+    <div 
+      className="max-w-6xl w-full bg-gray-900 rounded-lg overflow-hidden flex"
+      onClick={(e) => e.stopPropagation()}
+    >
+      <div className="w-2/3 flex items-center justify-center">
+        <img 
+          src={selectedProject.fullImage} 
+          alt={selectedProject.name} 
+          className="max-w-full max-h-[90vh] object-contain" 
+        />
+      </div>
+      <div className="w-1/3 p-8">
+        <h3 className="text-2xl font-bold text-white mb-4">
+          {selectedProject.name}
+        </h3>
+        <p className="text-gray-400 mb-4">
+          {selectedProject.description}
+        </p>
+        
+        
+      </div>
+    </div>
+  </div>
+)}
       </div>
     </section>
   );
