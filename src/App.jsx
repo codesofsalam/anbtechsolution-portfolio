@@ -1,25 +1,23 @@
-// src/App.jsx
-import { useEffect } from 'react';
-import Navbar from './components/layout/Navbar';
-import Footer from './components/layout/Footer';
-import HeroSection from './components/sections/HeroSection';
-import StatsSection from './components/sections/StatsSection';
-import GamesSection from './components/sections/GamesSection';
-import CommunitySection from './components/sections/CommunitySection';
-import { initializeAnimations } from './components/utils/Animations'
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+
+import ContactPage from './pages/ContactPage';
+import Services from './components/Services';
+import Projects from './components/Projects';
+import Hero from './components/Hero';
 
 const App = () => {
-  useEffect(() => {
-    initializeAnimations();
-  }, []);
-
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
+    <div>
       <Navbar />
-      <HeroSection />
-      <StatsSection />
-      <GamesSection />
-      <CommunitySection />
+      <Hero />
+      <Services />
+      <Projects />
+      <Routes>
+        <Route path="/contact" element={<ContactPage />} />
+      </Routes>
       <Footer />
     </div>
   );

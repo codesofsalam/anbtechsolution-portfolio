@@ -1,38 +1,31 @@
-@import url('https://fonts.googleapis.com/css2?family=Zen+Tokyo+Zoo&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-    --primary: 147, 51, 234;    /* Purple */
-    --secondary: 59, 130, 246;   /* Blue */
-    --accent: 236, 72, 153;      /* Pink */
-  }
-
-  html {
-    scroll-behavior: smooth;
-  }
-
-  body {
-    @apply bg-gray-900;
-    font-family: 'Zen Tokyo Zoo', sans-serif;
-  }
-
-  .gradient-text {
-    @apply bg-gradient-to-r from-purple-500 via-blue-500 to-pink-500 bg-clip-text text-transparent;
-  }
-
-  .neon-glow {
-    text-shadow: 0 0 10px rgba(var(--primary), 0.5),
-                 0 0 20px rgba(var(--primary), 0.3),
-                 0 0 30px rgba(var(--primary), 0.1);
-  }
-
-  .card-hover {
-    @apply transition-all duration-300 hover:shadow-[0_0_20px_rgba(147,51,234,0.3)];
-  }
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
 }
 
+::-webkit-scrollbar-track {
+  background: #1f2937;
+}
 
+::-webkit-scrollbar-thumb {
+  background: #6366f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4f46e5;
+}
+
+/* Smooth Scroll Behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Global Transition */
+* {
+  transition: all 0.3s ease;
+}
