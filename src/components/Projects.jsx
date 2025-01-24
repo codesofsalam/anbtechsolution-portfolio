@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, X } from "lucide-react";
 
 const Projects = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -133,33 +133,36 @@ const Projects = () => {
                 initial={{ scale: 0.9 }}
                 animate={{ scale: 1 }}
                 exit={{ scale: 0.9 }}
-                className="bg-white/10 rounded-xl max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 overflow-hidden relative max-h-[90vh]"
+                className="bg-white/10 rounded-xl w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 overflow-hidden relative"
                 onClick={(e) => e.stopPropagation()}
               >
-                <div className="flex items-center justify-center p-4">
+                <button
+                  onClick={() => setSelectedProject(null)}
+                  className="absolute top-2 right-2 p-2 bg-white/10 hover:bg-white/20 rounded-full text-white z-10"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+
+                <div className="flex items-center justify-center p-4 md:p-6">
                   <img
                     src={selectedProject.fullImage}
                     alt={selectedProject.name}
-                    className="w-full max-h-[600px] object-contain"
+                    className="w-full max-h-[70vh] object-contain"
                   />
                 </div>
-                <div className="p-4 md:p-8 text-white flex flex-col">
-                  <h2 className="text-2xl md:text-3xl mt-5 font-bold mb-4 flex items-center justify-between">
-                    {selectedProject.name}
-                  </h2>
-                  <p className="text-gray-300 mb-6 flex-grow overflow-y-auto text-sm md:text-base">
-                    {selectedProject.description}
-                  </p>
-                  <div className="text-xs md:text-sm text-gray-400">
+                <div className="p-4 md:p-8 text-white flex flex-col justify-between overflow-y-auto">
+                  <div className="-ml-8">
+                    <h2 className="text-2xl md:text-3xl font-bold mb-4">
+                      {selectedProject.name}
+                    </h2>
+                    <p className="text-gray-300 mb-6 text-sm md:text-base">
+                      {selectedProject.description}
+                    </p>
+                  </div>
+                  <div className="text-xs md:text-sm text-gray-400 mt-4">
                     Category: {selectedProject.category}
                   </div>
                 </div>
-                <button
-                  onClick={() => setSelectedProject(null)}
-                  className="absolute top-2 right-4 text-white hover:text-red-500 transition-colors text-sm"
-                >
-                  Close (X)
-                </button>
               </motion.div>
             </motion.div>
           )}
