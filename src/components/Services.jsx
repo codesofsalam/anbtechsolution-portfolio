@@ -38,15 +38,19 @@ const Services = () => {
   const [hoveredService, setHoveredService] = useState(null);
 
   return (
-    <section className="bg-[#282828] text-white py-20 flex items-center">
+    <section className="bg-[#1A1A1A] text-white py-20" id='services'>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Added heading and subheading */}
-        <div className="text-center mb-16">
+        <motion.div 
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
           <h2 className="text-4xl font-bold mb-4 text-white">Our Services</h2>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
             We provide comprehensive digital solutions tailored to meet your business needs and drive growth.
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-3 gap-16">
           {services.map((service, index) => (
@@ -58,27 +62,40 @@ const Services = () => {
                 delay: index * 0.2,
                 duration: 0.5
               }}
-              className="bg-gray-800 rounded-lg overflow-hidden hover:shadow-xl hover:scale-105 transition-all relative"
+              whileHover={{ scale: 1.05 }}
+              className="relative overflow-hidden rounded-xl shadow-lg"
               onMouseEnter={() => setHoveredService(index)}
               onMouseLeave={() => setHoveredService(null)}
             >
-              <div className="relative h-80">
-                <img
+              <div className="relative h-80 overflow-hidden">
+                <motion.img
                   src={service.image}
                   alt={service.title}
-                  className={`w-full h-full object-cover transition-opacity duration-300 ${
-                    hoveredService === index ? 'opacity-50' : 'opacity-100'
+                  className={`w-full h-full object-cover transition-all duration-300 ${
+                    hoveredService === index ? 'scale-110 blur-sm' : 'scale-100 blur-none'
                   }`}
+                  initial={{ scale: 1 }}
+                  animate={{ 
+                    scale: hoveredService === index ? 1.1 : 1,
+                    filter: hoveredService === index ? 'blur(4px)' : 'blur(0px)'
+                  }}
+                  transition={{ duration: 0.3 }}
                 />
-                {hoveredService === index && (
-                  <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
-                    <p className="text-white text-center text-sm">{service.description}</p>
-                  </div>
-                )}
+                <AnimatedOverlay 
+                  isHovered={hoveredService === index} 
+                  description={service.description} 
+                />
               </div>
-              <div className="p-4 text-center bg-purple-600">
+              <motion.div 
+                className="p-4 text-center bg-purple-600"
+                initial={{ height: 'auto' }}
+                animate={{ 
+                  backgroundColor: hoveredService === index ? '#7E22CE' : '#9333EA'
+                }}
+                transition={{ duration: 0.3 }}
+              >
                 <h3 className="text-lg font-semibold">{service.title}</h3>
-              </div>
+              </motion.div>
             </motion.div>
           ))}
         </div>
@@ -86,5 +103,32 @@ const Services = () => {
     </section>
   );
 };
+
+import PropTypes from 'prop-types';
+
+const AnimatedOverlay = ({ isHovered, description }) => {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ 
+        opacity: isHovered ? 1 : 0,
+        y: isHovered ? 0 : 50
+      }}
+      transition={{ duration: 0.3 }}
+      className={`absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center p-6 ${
+        isHovered ? 'visible' : 'invisible'
+      }`}
+    >
+      <p className="text-white text-center text-sm">{description}</p>
+    </motion.div>
+  );
+};
+
+AnimatedOverlay.propTypes = {
+  isHovered: PropTypes.bool.isRequired,
+  description: PropTypes.string.isRequired,
+};
+
+
 
 export default Services;
