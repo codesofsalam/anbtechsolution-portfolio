@@ -77,7 +77,7 @@ const Hero = () => {
             <img
               src="/Hero.png"
               alt="Hero Image"
-              className="w-full h-auto rounded-xl shadow-2xl"
+              className="w-full -ml-8 h-auto"
             />
           </motion.div>
         </motion.div>

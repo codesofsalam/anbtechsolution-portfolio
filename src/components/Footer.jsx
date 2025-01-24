@@ -35,16 +35,18 @@ const Footer = () => {
             transition={{ duration: 0.5 }}
             className="bg-white/5 rounded-xl p-4 md:p-6"
           >
-            <img
-              src="/logo.png"
-              alt="Company Logo"
-              className="h-8 md:h-12 mb-4 md:mb-6"
-            />
-            <p className="text-sm md:text-base text-gray-300 mb-4 md:mb-6">
-              Innovative digital solutions at the intersection of technology and
-              creativity — your trusted partner in crafting solutions for the
-              digital age.
-            </p>
+            <div className="flex flex-col items-center md:items-start">
+              <img
+                src="/logo.png"
+                alt="Company Logo"
+                className="h-8 md:h-12 mb-4 md:mb-6"
+              />
+              <p className="text-sm md:text-base text-gray-300 mb-4 md:mb-6 text-center md:text-left">
+                Innovative digital solutions at the intersection of technology and
+                creativity — your trusted partner in crafting solutions for the
+                digital age.
+              </p>
+            </div>
           </motion.div>
 
           <motion.div
