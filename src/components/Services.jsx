@@ -39,21 +39,21 @@ const Services = () => {
   const [hoveredService, setHoveredService] = useState(null);
 
   return (
-    <section className="bg-[#1A1A1A] text-white py-20" id="services">
+    <section className="bg-[#1A1A1A] text-white py-12 md:py-20" id="services">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12 md:mb-16"
         >
-          <h2 className="text-4xl font-bold mb-4 text-white">Services</h2>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Services</h2>
+          <p className="text-base md:text-xl text-gray-300 max-w-2xl mx-auto">
             We provide comprehensive digital solutions tailored to meet your business needs and drive growth.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-3 gap-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 lg:gap-16">
           {services.map((service, index) => (
             <motion.div
               key={service.title}
@@ -68,7 +68,7 @@ const Services = () => {
               onMouseEnter={() => setHoveredService(index)}
               onMouseLeave={() => setHoveredService(null)}
             >
-              <div className="relative h-80 overflow-hidden">
+              <div className="relative h-56 md:h-80 overflow-hidden">
                 <motion.img
                   src={service.image}
                   alt={service.title}
@@ -95,7 +95,7 @@ const Services = () => {
                 }}
                 transition={{ duration: 0.3 }}
               >
-                <h3 className="text-lg font-semibold">{service.title}</h3>
+                <h3 className="text-base md:text-lg font-semibold">{service.title}</h3>
               </motion.div>
             </motion.div>
           ))}
@@ -114,11 +114,11 @@ const AnimatedOverlay = ({ isHovered, description }) => {
         y: isHovered ? 0 : 50
       }}
       transition={{ duration: 0.3 }}
-      className={`absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center p-6 ${
+      className={`absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 md:p-6 ${
         isHovered ? 'visible' : 'invisible'
       }`}
     >
-      <p className="text-white text-center text-sm">{description}</p>
+      <p className="text-white text-center text-xs md:text-sm">{description}</p>
     </motion.div>
   );
 };

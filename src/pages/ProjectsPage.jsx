@@ -45,19 +45,19 @@ const ProjectsPage = () => {
     <motion.section 
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
-      className="bg-[#1A1A1A] py-20"
+      className="bg-[#1A1A1A] py-10 sm:py-20"
     >
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Company Description Section */}
         <motion.div 
           initial={{ y: -50, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
-          className="text-center mb-16"
+          className="text-center mb-10 sm:mb-16"
         >
-          <h1 className="text-5xl font-bold mb-6 text-white">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 text-white">
             ANB Tech Solution
           </h1>
-          <p className="max-w-4xl mx-auto text-gray-300 text-lg leading-relaxed">
+          <p className="max-w-4xl mx-auto text-gray-300 text-base sm:text-lg leading-relaxed">
             At ANB Tech Solution, we are passionate about transforming
             innovative ideas into cutting-edge digital solutions. Our team of
             expert developers, designers, and blockchain specialists are
@@ -69,11 +69,11 @@ const ProjectsPage = () => {
         </motion.div>
 
         {/* Projects Section */}
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-white mb-4">
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-2 sm:mb-4">
             Our Featured Projects
           </h2>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+          <p className="text-base sm:text-xl text-gray-300 max-w-2xl mx-auto">
             Innovative solutions that push technological boundaries
           </p>
         </div>
@@ -82,14 +82,15 @@ const ProjectsPage = () => {
         <motion.div 
           initial={{ y: 50, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
-          className="flex justify-center space-x-4 mb-12"
+          className="flex justify-center space-x-2 sm:space-x-4 mb-8 sm:mb-12 flex-wrap"
         >
           {categories.map((category) => (
             <button
               key={category}
               onClick={() => setActiveFilter(category)}
               className={`
-                px-6 py-2 rounded-full transition-all
+                px-3 sm:px-6 py-1 sm:py-2 rounded-full transition-all text-sm sm:text-base
+                mb-2
                 ${
                   activeFilter === category 
                   ? 'bg-purple-600 text-white' 
@@ -105,7 +106,7 @@ const ProjectsPage = () => {
         <motion.div 
           initial="hidden"
           whileInView="visible"
-          className="grid md:grid-cols-3 gap-8"
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
         >
           {filteredProjects.map((project, index) => (
             <motion.div
@@ -121,17 +122,17 @@ const ProjectsPage = () => {
                 <img
                   src={project.image}
                   alt={project.name}
-                  className="w-full h-48 object-cover"
+                  className="w-full h-36 sm:h-48 object-cover"
                 />
                 <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
-                  <ArrowUpRight className="text-white w-12 h-12" />
+                  <ArrowUpRight className="text-white w-8 sm:w-12 h-8 sm:h-12" />
                 </div>
               </div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold text-white mb-2">
+              <div className="p-4 sm:p-6">
+                <h3 className="text-base sm:text-xl font-semibold text-white mb-1 sm:mb-2">
                   {project.name}
                 </h3>
-                <p className="text-gray-400">
+                <p className="text-sm sm:text-base text-gray-400">
                   {project.category}
                 </p>
               </div>
@@ -145,28 +146,35 @@ const ProjectsPage = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-8"
+              className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 sm:p-8"
               onClick={() => setSelectedProject(null)}
             >
               <motion.div 
                 initial={{ scale: 0.9 }}
                 animate={{ scale: 1 }}
                 exit={{ scale: 0.9 }}
-                className="bg-white/10 rounded-xl max-w-4xl w-full grid md:grid-cols-2 overflow-hidden"
+                className="bg-white/10 rounded-xl max-w-4xl w-full grid sm:grid-cols-2 overflow-hidden"
                 onClick={(e) => e.stopPropagation()}
               >
-                <div>
+                <div className="hidden sm:block">
                   <img 
                     src={selectedProject.fullImage} 
                     alt={selectedProject.name} 
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="p-8 text-white">
-                  <h2 className="text-3xl font-bold mb-4">
+                <div className="sm:hidden">
+                  <img 
+                    src={selectedProject.fullImage} 
+                    alt={selectedProject.name} 
+                    className="w-full h-64 object-cover"
+                  />
+                </div>
+                <div className="p-6 sm:p-8 text-white">
+                  <h2 className="text-2xl sm:text-3xl font-bold mb-2 sm:mb-4">
                     {selectedProject.name}
                   </h2>
-                  <p className="text-gray-300 mb-6">
+                  <p className="text-sm sm:text-base text-gray-300 mb-4 sm:mb-6">
                     {selectedProject.description}
                   </p>
                 </div>
@@ -180,19 +188,19 @@ const ProjectsPage = () => {
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="bg-gray-700 rounded-xl p-12 mt-16 text-center"
+          className="bg-gray-700 rounded-xl p-8 sm:p-12 mt-10 sm:mt-16 text-center"
         >
-          <h2 className="text-4xl font-bold mb-6 text-white">
+          <h2 className="text-2xl sm:text-4xl font-bold mb-4 sm:mb-6 text-white">
             Let&apos;s Discuss Your Project
           </h2>
-          <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base text-gray-300 mb-6 sm:mb-8 max-w-2xl mx-auto">
             Ready to turn your innovative idea into reality? We&apos;re
             excited to hear about your project and discuss how OrbiMatrix can
             help you achieve your goals.
           </p>
           <Link
             to="/contact"
-            className="bg-purple-600 text-white px-8 py-3 rounded-full text-lg font-semibold
+            className="bg-purple-600 text-white px-6 sm:px-8 py-2 sm:py-3 rounded-full text-base sm:text-lg font-semibold
                        hover:bg-purple-700 transition-colors inline-block"
           >
             Contact Us
