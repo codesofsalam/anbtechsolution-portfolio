@@ -146,38 +146,40 @@ const ProjectsPage = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 sm:p-8"
+              className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 md:p-8 overflow-y-auto"
               onClick={() => setSelectedProject(null)}
             >
               <motion.div
                 initial={{ scale: 0.9 }}
                 animate={{ scale: 1 }}
                 exit={{ scale: 0.9 }}
-                className="bg-white/10 rounded-xl max-w-4xl w-full grid sm:grid-cols-2 overflow-hidden"
+                className="bg-white/10 rounded-xl max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 overflow-hidden relative max-h-[90vh]"
                 onClick={(e) => e.stopPropagation()}
               >
-                <div className="hidden sm:block">
+                <div className="flex items-center justify-center p-4">
                   <img
                     src={selectedProject.fullImage}
                     alt={selectedProject.name}
-                    className="w-full h-full object-cover"
+                    className="w-full max-h-[600px] object-contain"
                   />
                 </div>
-                <div className="sm:hidden">
-                  <img
-                    src={selectedProject.fullImage}
-                    alt={selectedProject.name}
-                    className="w-full h-64 object-cover"
-                  />
-                </div>
-                <div className="p-6 sm:p-8 text-white">
-                  <h2 className="text-2xl sm:text-3xl font-bold mb-2 sm:mb-4">
+                <div className="p-4 md:p-8 text-white flex flex-col">
+                  <h2 className="text-2xl md:text-3xl mt-5 font-bold mb-4 flex items-center justify-between">
                     {selectedProject.name}
                   </h2>
-                  <p className="text-sm sm:text-base text-gray-300 mb-4 sm:mb-6">
+                  <p className="text-gray-300 mb-6 flex-grow overflow-y-auto text-sm md:text-base">
                     {selectedProject.description}
                   </p>
+                  <div className="text-xs md:text-sm text-gray-400">
+                    Category: {selectedProject.category}
+                  </div>
                 </div>
+                <button
+                  onClick={() => setSelectedProject(null)}
+                  className="absolute top-2 right-4 text-white hover:text-red-500 transition-colors text-sm"
+                >
+                  Close (X)
+                </button>
               </motion.div>
             </motion.div>
           )}
