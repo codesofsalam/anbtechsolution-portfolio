@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { User, Mail, MessageSquare} from "lucide-react";
+import { User, Mail, MessageSquare, Send } from "lucide-react";
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -33,8 +33,6 @@ const ContactPage = () => {
       newErrors.email = "Email is invalid";
     }
 
-  
-
     if (!formData.message.trim()) {
       newErrors.message = "Message is required";
     }
@@ -50,12 +48,10 @@ const ContactPage = () => {
       console.log("Form submitted", formData);
       setIsSubmitted(true);
 
-      // Reset form after 3 seconds
       setTimeout(() => {
         setFormData({
           name: "",
           email: "",
-    
           message: "",
         });
         setIsSubmitted(false);
@@ -63,39 +59,29 @@ const ContactPage = () => {
     }
   };
 
-  const inputVariants = {
-    hidden: { opacity: 0, x: -20 },
-    visible: { opacity: 1, x: 0 }
-  };
-
   return (
-    <motion.div 
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.6 }}
-      className="min-h-screen bg-[#1A1A1A] py-12 px-4 sm:px-6 lg:px-8"
-    >
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black py-16 px-4 flex items-center justify-center">
       <motion.div 
-        initial={{ scale: 0.9, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
-        className="max-w-2xl mx-auto bg-[#2C2C2C] shadow-2xl rounded-xl overflow-hidden"
+        className="w-full max-w-xl bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl border border-white/20 overflow-hidden"
       >
-        <div className="p-8">
+        <div className="p-10">
           <motion.h2
             initial={{ y: -50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className="text-3xl font-extrabold text-center text-white mb-8"
+            className="text-4xl font-bold text-center text-white mb-10 tracking-tight"
           >
-            Contact Us
+            Get In Touch
           </motion.h2>
 
           {isSubmitted ? (
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="text-center text-green-500 font-semibold"
+              className="text-center text-green-400 font-semibold text-xl py-12"
             >
               Thank you! We&apos;ll get back to you soon.
             </motion.div>
@@ -104,58 +90,50 @@ const ContactPage = () => {
               {["name", "email", "message"].map((field) => (
                 <motion.div
                   key={field}
-                  variants={inputVariants}
-                  initial="hidden"
-                  animate="visible"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.4 }}
+                  className="relative"
                 >
-                  <label
-                    htmlFor={field}
-                    className="block text-sm font-medium text-gray-300"
-                  >
-                    {field.charAt(0).toUpperCase() + field.slice(1)} 
-                 
-                  </label>
-                  <div className="mt-1 relative rounded-md">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      {field === "name" && <User className="h-5 w-5 text-gray-400" />}
-                      {field === "email" && <Mail className="h-5 w-5 text-gray-400" />}
-                    
-                      {field === "message" && <MessageSquare className="h-5 w-5 text-gray-400" />}
-                    </div>
-                    {field !== "message" ? (
-                      <input
-                        type={field === "email" ? "email" : field ===  "text"}
-                        name={field}
-                        id={field}
-                        value={formData[field]}
-                        onChange={handleChange}
-                        className={`block w-full pl-10 pr-3 py-2 bg-[#3C3C3C] text-white border-2 ${
-                          errors[field]
-                            ? "border-red-500"
-                            : "border-transparent focus:border-purple-500"
-                        } rounded-md`}
-                      />
-                    ) : (
-                      <textarea
-                        name={field}
-                        id={field}
-                        rows={4}
-                        value={formData[field]}
-                        onChange={handleChange}
-                        className={`block w-full pl-10 pr-3 py-2 bg-[#3C3C3C] text-white border-2 ${
-                          errors[field]
-                            ? "border-red-500"
-                            : "border-transparent focus:border-purple-500"
-                        } rounded-md`}
-                      />
-                    )}
+                  <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                    {field === "name" && <User className="h-5 w-5 text-purple-400" />}
+                    {field === "email" && <Mail className="h-5 w-5 text-purple-400" />}
+                    {field === "message" && <MessageSquare className="h-5 w-5 text-purple-400" />}
                   </div>
+                  
+                  {field !== "message" ? (
+                    <input
+                      type={field === "email" ? "email" : "text"}
+                      name={field}
+                      placeholder={`Enter your ${field}`}
+                      value={formData[field]}
+                      onChange={handleChange}
+                      className={`w-full pl-12 pr-4 py-3 bg-white/10 text-white 
+                        rounded-xl border transition duration-300 
+                        ${errors[field] 
+                          ? "border-red-500" 
+                          : "border-white/20 focus:border-purple-500"}`}
+                    />
+                  ) : (
+                    <textarea
+                      name={field}
+                      placeholder="Your message"
+                      rows={4}
+                      value={formData[field]}
+                      onChange={handleChange}
+                      className={`w-full pl-12 pr-4 py-3 bg-white/10 text-white 
+                        rounded-xl border transition duration-300 
+                        ${errors[field] 
+                          ? "border-red-500" 
+                          : "border-white/20 focus:border-purple-500"}`}
+                    />
+                  )}
+                  
                   {errors[field] && (
                     <motion.p 
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
-                      className="mt-2 text-sm text-red-500"
+                      className="mt-2 text-sm text-red-400 pl-4"
                     >
                       {errors[field]}
                     </motion.p>
@@ -167,15 +145,18 @@ const ContactPage = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 type="submit"
-                className="w-full py-3 px-4 bg-purple-600 text-white rounded-md hover:bg-purple-700 transition duration-300"
+                className="w-full py-4 bg-purple-600 text-white rounded-xl 
+                  hover:bg-purple-700 transition duration-300 
+                  flex items-center justify-center space-x-2 group"
               >
-                Send Message
+                <span>Send Message</span>
+                <Send className="h-5 w-5 group-hover:translate-x-1 transition" />
               </motion.button>
             </form>
           )}
         </div>
       </motion.div>
-    </motion.div>
+    </div>
   );
 };
 

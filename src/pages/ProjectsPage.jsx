@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
+import { ArrowUpRight } from 'lucide-react';
 
 const ProjectsPage = () => {
   const [activeFilter, setActiveFilter] = useState("All");
@@ -15,7 +16,6 @@ const ProjectsPage = () => {
       image: "/limousine.PNG",
       fullImage: "/limousine-full.png",
     },
-
     {
       name: "OIB-Online Islamic Book App",
       category: "Mobile App",
@@ -42,11 +42,19 @@ const ProjectsPage = () => {
       : projects.filter((p) => p.category === activeFilter);
 
   return (
-    <div className="bg-[#1A1A1A]  min-h-screen text-white">
-      {/* Company Description Section */}
-      <section className="bg-[#1A1A1A]  py-20">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-5xl font-bold mb-6 text-purple-500">
+    <motion.section 
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      className="bg-gradient-to-br from-gray-900 to-black py-20"
+    >
+      <div className="container mx-auto px-6">
+        {/* Company Description Section */}
+        <motion.div 
+          initial={{ y: -50, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          className="text-center mb-16"
+        >
+          <h1 className="text-5xl font-bold mb-6 text-white">
             ANB Tech Solution
           </h1>
           <p className="max-w-4xl mx-auto text-gray-300 text-lg leading-relaxed">
@@ -58,132 +66,140 @@ const ProjectsPage = () => {
             technologies to solve complex problems and deliver exceptional value
             to our clients.
           </p>
+        </motion.div>
+
+        {/* Projects Section */}
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold text-white mb-4">
+            Our Featured Projects
+          </h2>
+          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+            Innovative solutions that push technological boundaries
+          </p>
         </div>
-      </section>
 
-      {/* Projects Section */}
-      <section className="bg-[#1A1A1A] py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-white mb-4">
-              Our Innovative Projects
-            </h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">
-              Showcasing groundbreaking solutions that push the boundaries of
-              technology.
-            </p>
-          </div>
-
-          {/* Category Filters */}
-          <div className="flex justify-center mb-12 space-x-4">
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setActiveFilter(category)}
-                className={`
-                px-4 py-2 rounded-ee-lg transition-colors 
+        {/* Category Filters */}
+        <motion.div 
+          initial={{ y: 50, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          className="flex justify-center space-x-4 mb-12"
+        >
+          {categories.map((category) => (
+            <button
+              key={category}
+              onClick={() => setActiveFilter(category)}
+              className={`
+                px-6 py-2 rounded-full transition-all
                 ${
-                  activeFilter === category
-                    ? "bg-purple-600 text-white"
-                    : "bg-[#111827] text-gray-300 hover:bg-gray-600"
+                  activeFilter === category 
+                  ? 'bg-purple-600 text-white' 
+                  : 'bg-white/10 text-gray-300 hover:bg-white/20'
                 }
               `}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
+            >
+              {category}
+            </button>
+          ))}
+        </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {filteredProjects.map((project, index) => (
-              <motion.div
-                key={project.name}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{
-                  delay: index * 0.2,
-                  duration: 0.5,
-                }}
-                className="bg-gray-900 rounded-lg overflow-hidden transform hover:scale-105 transition-all"
-              >
-                <div
-                  className="relative cursor-pointer"
-                  onClick={() => setSelectedProject(project)}
-                >
-                  <img
-                    src={project.image}
-                    alt={project.name}
-                    className="w-full h-48 object-cover"
-                  />
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          className="grid md:grid-cols-3 gap-8"
+        >
+          {filteredProjects.map((project, index) => (
+            <motion.div
+              key={project.name}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: index * 0.2 }}
+              whileHover={{ scale: 1.05 }}
+              onClick={() => setSelectedProject(project)}
+              className="bg-white/5 rounded-xl overflow-hidden cursor-pointer"
+            >
+              <div className="relative">
+                <img
+                  src={project.image}
+                  alt={project.name}
+                  className="w-full h-48 object-cover"
+                />
+                <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+                  <ArrowUpRight className="text-white w-12 h-12" />
                 </div>
-                <div className="p-6 bg-purple-600">
-                  <h3 className="text-xl font-bold text-white mb-2">
-                    {project.name}
-                  </h3>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-semibold text-white mb-2">
+                  {project.name}
+                </h3>
+                <p className="text-gray-400">
+                  {project.category}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
 
-          {/* Project Modal */}
+        <AnimatePresence>
           {selectedProject && (
-            <div
-              className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-8"
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-8"
               onClick={() => setSelectedProject(null)}
             >
-              <div
-                className="max-w-6xl w-full bg-gray-900 rounded-lg overflow-hidden flex"
+              <motion.div 
+                initial={{ scale: 0.9 }}
+                animate={{ scale: 1 }}
+                exit={{ scale: 0.9 }}
+                className="bg-white/10 rounded-xl max-w-4xl w-full grid md:grid-cols-2 overflow-hidden"
                 onClick={(e) => e.stopPropagation()}
               >
-                <div className="w-2/3 flex items-center justify-center">
-                  <img
-                    src={selectedProject.fullImage}
-                    alt={selectedProject.name}
-                    className="max-w-full max-h-[90vh] object-contain"
+                <div>
+                  <img 
+                    src={selectedProject.fullImage} 
+                    alt={selectedProject.name} 
+                    className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="w-1/3 p-8">
-                  <h3 className="text-2xl font-bold text-white mb-4">
+                <div className="p-8 text-white">
+                  <h2 className="text-3xl font-bold mb-4">
                     {selectedProject.name}
-                  </h3>
-                  <p className="text-gray-400 mb-4">
+                  </h2>
+                  <p className="text-gray-300 mb-6">
                     {selectedProject.description}
                   </p>
                 </div>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           )}
-        </div>
-      </section>
+        </AnimatePresence>
 
-      {/* Let's Discuss Section */}
-      <section className="bg-[#1A1A1A] py-20">
-        <div className="container mx-auto px-4 text-center">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-            className="bg-purple-600/20 rounded-lg p-12"
+        {/* Let's Discuss Section */}
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+          className="bg-gradient-to-br from-black to-gray-900 rounded-xl p-12 mt-16 text-center"
+        >
+          <h2 className="text-4xl font-bold mb-6 text-white">
+            Let&apos;s Discuss Your Project
+          </h2>
+          <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
+            Ready to turn your innovative idea into reality? We&apos;re
+            excited to hear about your project and discuss how OrbiMatrix can
+            help you achieve your goals.
+          </p>
+          <Link
+            to="/contact"
+            className="bg-purple-600 text-white px-8 py-3 rounded-full text-lg font-semibold
+                       hover:bg-purple-700 transition-colors inline-block"
           >
-            <h2 className="text-4xl font-bold mb-6 text-white">
-              Let&apos;s Discuss Your Project
-            </h2>
-            <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
-              Ready to turn your innovative idea into reality? We&apos;re
-              excited to hear about your project and discuss how OrbiMatrix can
-              help you achieve your goals.
-            </p>
-            <Link
-              to="/contact"
-              className="bg-purple-600 text-white px-8 py-3 rounded-full text-lg font-semibold
-                         hover:bg-purple-700 transition-colors inline-block"
-            >
-              Contact Us
-            </Link>
-          </motion.div>
-        </div>
-      </section>
-    </div>
+            Contact Us
+          </Link>
+        </motion.div>
+      </div>
+    </motion.section>
   );
 };
 

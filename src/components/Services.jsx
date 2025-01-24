@@ -39,7 +39,7 @@ const Services = () => {
   const [hoveredService, setHoveredService] = useState(null);
 
   return (
-    <section className="bg-[#1A1A1A] text-white py-20" id="services">
+    <section className="bg-gradient-to-br from-gray-900 to-black text-white py-20" id="services">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
           initial={{ opacity: 0, y: 50 }}
