@@ -126,16 +126,9 @@ const ContactPage = () => {
             transition={{ duration: 0.6 }}
             className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-3 sm:mb-4"
           >
-            Contact
+            Ready to Get Started?
           </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-sm sm:text-base md:text-lg text-gray-300 max-w-xl mx-auto"
-          >
-            Want to discuss a project? Reach out to us, and we&apos;ll get back to you as soon as possible.
-          </motion.p>
+         
         </motion.div>
 
         <motion.div
