@@ -1,10 +1,37 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, X } from "lucide-react";
 
 const Projects = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [selectedProject, setSelectedProject] = useState(null);
+  const modalRef = useRef(null);
+
+  useEffect(() => {
+    const handleSwipe = (e) => {
+      if (!modalRef.current) return;
+      
+      const touchStartY = e.touches[0].clientY;
+      const handleTouchMove = (moveEvent) => {
+        const touchEndY = moveEvent.touches[0].clientY;
+        if (touchStartY - touchEndY > 100) {
+          setSelectedProject(null);
+        }
+      };
+
+      document.addEventListener('touchmove', handleTouchMove);
+      return () => {
+        document.removeEventListener('touchmove', handleTouchMove);
+      };
+    };
+
+    if (selectedProject) {
+      document.addEventListener('touchstart', handleSwipe);
+      return () => {
+        document.removeEventListener('touchstart', handleSwipe);
+      };
+    }
+  }, [selectedProject]);
 
   const projects = [
     {
@@ -130,6 +157,7 @@ const Projects = () => {
               onClick={() => setSelectedProject(null)}
             >
               <motion.div
+                ref={modalRef}
                 initial={{ scale: 0.9 }}
                 animate={{ scale: 1 }}
                 exit={{ scale: 0.9 }}
@@ -138,28 +166,28 @@ const Projects = () => {
               >
                 <button
                   onClick={() => setSelectedProject(null)}
-                  className="absolute top-2 right-2 p-2 bg-white/10 hover:bg-white/20 rounded-full text-white z-10 w-10 h-10 flex items-center justify-center"
+                  className="absolute top-2 right-2 p-2 bg-white/10 hover:bg-white/20 rounded-full text-white z-50 w-10 h-10 flex items-center justify-center"
                 >
                   <X className="w-6 h-6" />
                 </button>
 
-                <div className="flex items-center justify-center p-4 md:p-6 w-full">
+                <div className="flex items-center justify-center p-4 md:p-6 w-full relative">
                   <img
                     src={selectedProject.fullImage}
                     alt={selectedProject.name}
                     className="w-full max-h-[70vh] object-contain"
                   />
                 </div>
-                <div className="p-4 md:p-8 text-white flex flex-col justify-between space-y-4 overflow-y-auto md:text-left text-center">
+                <div className="p-4 md:p-8 text-white flex flex-col justify-between space-y-4 overflow-y-auto">
                   <div>
-                    <h2 className="text-2xl md:text-3xl font-bold mb-3 md:text-left text-center">
+                    <h2 className="text-2xl md:text-3xl font-bold mb-3 text-center md:text-left">
                       {selectedProject.name}
                     </h2>
-                    <p className="text-gray-300 mb-4 text-sm md:text-base leading-relaxed md:text-left text-center">
+                    <p className="text-gray-300 mb-4 text-sm md:text-base leading-relaxed text-center md:text-left">
                       {selectedProject.description}
                     </p>
                   </div>
-                  <div className="bg-white/10 p-3 rounded-lg inline-block mx-auto md:mx-0">
+                  <div className="bg-white/10 p-3 rounded-lg mx-auto md:self-start">
                     <span className="text-xs md:text-sm text-gray-400 font-medium">
                       Category: 
                     </span>

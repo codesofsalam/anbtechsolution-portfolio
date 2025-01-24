@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowUpRight, X } from "lucide-react";
@@ -6,6 +6,7 @@ import { ArrowUpRight, X } from "lucide-react";
 const ProjectsPage = () => {
   const [activeFilter, setActiveFilter] = useState("All");
   const [selectedProject, setSelectedProject] = useState(null);
+  const modalRef = useRef(null);
 
   const projects = [
     {
@@ -140,47 +141,54 @@ const ProjectsPage = () => {
           ))}
         </motion.div>
 
+       
         <AnimatePresence>
           {selectedProject && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 md:p-8 overflow-y-auto"
+              className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-2 md:p-8 overflow-y-auto"
               onClick={() => setSelectedProject(null)}
             >
               <motion.div
+                ref={modalRef}
                 initial={{ scale: 0.9 }}
                 animate={{ scale: 1 }}
                 exit={{ scale: 0.9 }}
-                className="bg-white/10 rounded-xl w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 overflow-hidden relative"
+                className="bg-white/10 rounded-xl w-full max-w-4xl flex flex-col md:grid md:grid-cols-2 overflow-hidden relative"
                 onClick={(e) => e.stopPropagation()}
               >
                 <button
                   onClick={() => setSelectedProject(null)}
-                  className="absolute top-2 right-2 p-2 bg-white/10 hover:bg-white/20 rounded-full text-white z-10"
+                  className="absolute top-2 right-2 p-2 bg-white/10 hover:bg-white/20 rounded-full text-white z-50 w-10 h-10 flex items-center justify-center"
                 >
                   <X className="w-6 h-6" />
                 </button>
 
-                <div className="flex items-center justify-center p-4 md:p-6">
+                <div className="flex items-center justify-center p-4 md:p-6 w-full relative">
                   <img
                     src={selectedProject.fullImage}
                     alt={selectedProject.name}
                     className="w-full max-h-[70vh] object-contain"
                   />
                 </div>
-                <div className="p-4 md:p-8 text-white flex flex-col justify-between overflow-y-auto">
+                <div className="p-4 md:p-8 text-white flex flex-col justify-between space-y-4 overflow-y-auto">
                   <div>
-                    <h2 className="text-2xl md:text-3xl font-bold mb-4">
+                    <h2 className="text-2xl md:text-3xl font-bold mb-3 text-center md:text-left">
                       {selectedProject.name}
                     </h2>
-                    <p className="text-gray-300 mb-6 text-sm md:text-base">
+                    <p className="text-gray-300 mb-4 text-sm md:text-base leading-relaxed text-center md:text-left">
                       {selectedProject.description}
                     </p>
                   </div>
-                  <div className="text-xs md:text-sm text-gray-400 mt-4">
-                    Category: {selectedProject.category}
+                  <div className="bg-white/10 p-3 rounded-lg mx-auto md:self-start">
+                    <span className="text-xs md:text-sm text-gray-400 font-medium">
+                      Category: 
+                    </span>
+                    <span className="text-xs md:text-sm text-white ml-2">
+                      {selectedProject.category}
+                    </span>
                   </div>
                 </div>
               </motion.div>
