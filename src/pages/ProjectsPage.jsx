@@ -171,7 +171,7 @@ const ProjectsPage = () => {
                   />
                 </div>
                 <div className="p-4 md:p-8 text-white flex flex-col justify-between overflow-y-auto">
-                  <div className="-ml-8">
+                  <div>
                     <h2 className="text-2xl md:text-3xl font-bold mb-4">
                       {selectedProject.name}
                     </h2>
