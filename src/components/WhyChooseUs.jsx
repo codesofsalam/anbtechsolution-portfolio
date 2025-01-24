@@ -40,7 +40,7 @@ const WhyChooseUs = () => {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
-      className="bg-gradient-to-br from-gray-900 to-black py-20"
+      className="bg-[#1A1A1A] py-20"
     >
       <div className="container mx-auto px-6">
         <motion.div

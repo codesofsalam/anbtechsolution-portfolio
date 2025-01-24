@@ -7,7 +7,7 @@ const Hero = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
-      className="min-h-screen bg-gradient-to-br from-gray-900 to-black flex items-center"
+      className="min-h-screen bg-[#1A1A1A] flex items-center"
     >
       <div className="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
         <motion.div
@@ -80,6 +80,7 @@ const Hero = () => {
           </motion.div>
         </motion.div>
       </div>
+      
     </motion.section>
   );
 };

@@ -22,7 +22,7 @@ const Navbar = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="bg-gradient-to-br from-gray-900 to-black text-white py-8"
+      className="bg-[#1A1A1A] text-white py-8"
     >
       <nav className="container mx-auto px-6 py-4 flex justify-between items-center">
         <motion.div 
@@ -73,7 +73,7 @@ const Navbar = () => {
             >
               <Link
                 to="/contact"
-                className="bg-purple-600 text-white text-lg px-6 py-2 rounded-full hover:bg-purple-700 transition-colors shadow-md hover:shadow-lg"
+                className="bg-[#9333EA] text-white text-lg px-6 py-2 rounded-full hover:bg-purple-700 transition-colors shadow-md hover:shadow-lg"
               >
                 Discuss Project
               </Link>

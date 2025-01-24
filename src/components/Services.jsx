@@ -39,7 +39,7 @@ const Services = () => {
   const [hoveredService, setHoveredService] = useState(null);
 
   return (
-    <section className="bg-gradient-to-br from-gray-900 to-black text-white py-20" id="services">
+    <section className="bg-[#1A1A1A] text-white py-20" id="services">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
           initial={{ opacity: 0, y: 50 }}
@@ -47,7 +47,7 @@ const Services = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold mb-4 text-white">Our Services</h2>
+          <h2 className="text-4xl font-bold mb-4 text-white">Services</h2>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
             We provide comprehensive digital solutions tailored to meet your business needs and drive growth.
           </p>

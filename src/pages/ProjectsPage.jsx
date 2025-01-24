@@ -45,7 +45,7 @@ const ProjectsPage = () => {
     <motion.section 
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
-      className="bg-gradient-to-br from-gray-900 to-black py-20"
+      className="bg-[#1A1A1A] py-20"
     >
       <div className="container mx-auto px-6">
         {/* Company Description Section */}
@@ -180,7 +180,7 @@ const ProjectsPage = () => {
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="bg-gradient-to-br from-black to-gray-900 rounded-xl p-12 mt-16 text-center"
+          className="bg-gray-700 rounded-xl p-12 mt-16 text-center"
         >
           <h2 className="text-4xl font-bold mb-6 text-white">
             Let&apos;s Discuss Your Project

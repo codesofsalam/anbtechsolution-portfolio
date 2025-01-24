@@ -39,7 +39,7 @@ const Projects = () => {
     <motion.section 
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
-      className="bg-gradient-to-br from-gray-900 to-black py-20"
+      className="bg-[#1A1A1A] py-20"
     >
       <div className="container mx-auto px-6">
         <motion.div 
@@ -48,7 +48,7 @@ const Projects = () => {
           className="text-center mb-12"
         >
           <h2 className="text-4xl font-bold text-white mb-4">
-            Our Featured Projects
+            Featured Projects
           </h2>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
             Innovative solutions that push technological boundaries

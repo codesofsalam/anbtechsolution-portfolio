@@ -1,50 +1,34 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { 
-  Linkedin, 
-  Facebook, 
-  Instagram
-} from 'lucide-react';
+import React from "react";
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { Linkedin, Facebook, Instagram } from "lucide-react";
 
 const Footer = () => {
   const socialLinks = [
-    { 
-      icon: Linkedin, 
-      href: "https://linkedin.com/company/orbmatrix",
-      color: "hover:text-blue-600"
+    {
+      icon: Linkedin,
+      href: "https://www.linkedin.com/company/anb-tech-solutions/",
+      color: "hover:text-blue-600",
     },
-    { 
-      icon: Facebook, 
-      href: "https://facebook.com/orbmatrix",
-      color: "hover:text-blue-500"
+    {
+      icon: Facebook,
+      href: "https://www.facebook.com/share/18GBjciTFb/",
+      color: "hover:text-blue-500",
     },
-    { 
-      icon: Instagram, 
-      href: "https://instagram.com/orbmatrix",
-      color: "hover:text-pink-500"
-    }
+    {
+      icon: Instagram,
+      href: "https://www.instagram.com/anb.techsolutions?utm_source=qr&igsh=dGJ4eTFtZmFsbHFk",
+      color: "hover:text-pink-500",
+    },
   ];
 
   return (
-    <motion.section 
+    <motion.section
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
-      className="bg-gradient-to-br from-gray-900 to-black py-20"
+      className="bg-[#1A1A1A] py-20"
     >
       <div className="container mx-auto px-6">
-        <motion.div 
-          initial={{ y: -50, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          className="text-center mb-12"
-        >
-          <h2 className="text-4xl font-bold text-white mb-4">
-            Connect With Us
-          </h2>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-            Let&apos;s collaborate and bring your digital vision to life
-          </p>
-        </motion.div>
-
         <div className="grid md:grid-cols-3 gap-8">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -52,13 +36,11 @@ const Footer = () => {
             transition={{ duration: 0.5 }}
             className="bg-white/5 rounded-xl p-6"
           >
-            <img 
-              src="/logo.png" 
-              alt="Company Logo" 
-              className="h-12 mb-6" 
-            />
+            <img src="/logo.png" alt="Company Logo" className="h-12 mb-6" />
             <p className="text-gray-300 mb-6">
-              Innovative digital solutions at the intersection of technology and creativity.
+              Innovative digital solutions at the intersection of technology and
+              creativity — your trusted partner in crafting solutions for the
+              digital age.
             </p>
           </motion.div>
 
@@ -70,7 +52,7 @@ const Footer = () => {
           >
             <div>
               <h4 className="text-white font-semibold mb-4">Quick Links</h4>
-              {['Home', 'Services', 'Projects', 'Contact'].map(link => (
+              {["Home", "Services", "Projects", "Contact"].map((link) => (
                 <motion.a
                   key={link}
                   href={`/${link.toLowerCase()}`}
@@ -83,11 +65,13 @@ const Footer = () => {
             </div>
             <div>
               <h4 className="text-white font-semibold mb-4">Services</h4>
-              {['Web Dev', 'Mobile Apps', 'UI/UX', 'Marketing'].map(service => (
-                <p key={service} className="text-gray-300 mb-2">
-                  {service}
-                </p>
-              ))}
+              {["Web Dev", "Mobile Apps", "UI/UX", "Marketing"].map(
+                (service) => (
+                  <p key={service} className="text-gray-300 mb-2">
+                    {service}
+                  </p>
+                )
+              )}
             </div>
           </motion.div>
 
@@ -97,11 +81,22 @@ const Footer = () => {
             transition={{ duration: 0.5, delay: 0.4 }}
             className="bg-white/5 rounded-xl p-6"
           >
-            <h4 className="text-white font-semibold mb-4 text-center">Contact Us</h4>
-            <p className="text-gray-300 text-center mb-4">
-              Email: contact@anbtechsolution.com<br />
-              Phone: +1 (123) 456-7890
-            </p>
+            <h4 className="text-white font-semibold mb-4 text-center">
+              Contact Us
+            </h4>
+            <div className="flex flex-col items-center mb-6">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-[#9333EA] text-white px-6 py-3 rounded-full 
+             hover:bg-purple-700 transition-colors 
+             font-semibold text-lg shadow-md"
+              >
+                <Link to="/contact" className="block w-full h-full text-white">
+                  Let&apos;s Discuss
+                </Link>
+              </motion.button>
+            </div>
             <div className="flex justify-center space-x-4">
               {socialLinks.map(({ icon: Icon, href, color }) => (
                 <motion.a
