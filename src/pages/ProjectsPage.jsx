@@ -42,9 +42,9 @@ const ProjectsPage = () => {
       : projects.filter((p) => p.category === activeFilter);
 
   return (
-    <div className="bg-[#282828]  min-h-screen text-white">
+    <div className="bg-[#1A1A1A]  min-h-screen text-white">
       {/* Company Description Section */}
-      <section className="bg-[#282828]  py-20">
+      <section className="bg-[#1A1A1A]  py-20">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-5xl font-bold mb-6 text-purple-500">
             ANB Tech Solution
@@ -62,7 +62,7 @@ const ProjectsPage = () => {
       </section>
 
       {/* Projects Section */}
-      <section className="bg-[#282828] py-20">
+      <section className="bg-[#1A1A1A] py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-white mb-4">
@@ -157,7 +157,7 @@ const ProjectsPage = () => {
       </section>
 
       {/* Let's Discuss Section */}
-      <section className="bg-[#1E1E1E] py-20">
+      <section className="bg-[#1A1A1A] py-20">
         <div className="container mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}

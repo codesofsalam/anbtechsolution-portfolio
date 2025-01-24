@@ -2,8 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
+  const handleScrollToServices = () => {
+    const servicesSection = document.getElementById('services');
+    if (servicesSection) {
+      servicesSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <div className="bg-[#1A1A1A] text-white shadow-lg">
+    <div className="bg-[#1A1A1A] text-white shadow-lg py-8">
       <nav className="container mx-auto px-6 py-4 flex justify-between items-center">
         <div className="flex items-center">
           <img
@@ -13,16 +20,17 @@ const Navbar = () => {
           />
         </div>
         <div>
-          <ul className="flex items-center space-x-8">
-            {[
+          <ul className="flex items-center space-x-16">
+            {[ 
               { label: "Home", path: "/" },
-              { label: "Services" },
+              { label: "Services", onClick: handleScrollToServices }, // Updated
               { label: "Project", path: "/projects" },
               { label: "Contact", path: "/contact" },
-            ].map(({ label, path }) => (
+            ].map(({ label, path, onClick }) => (
               <li key={label}>
                 <Link
-                  to={path}
+                  to={path || "#"} // Use # if no path is provided for scroll functionality
+                  onClick={onClick} // Add onClick for "Services"
                   className="text-lg font-medium text-gray-300 hover:text-white transition-colors relative group"
                 >
                   {label}
@@ -41,9 +49,13 @@ const Navbar = () => {
           </ul>
         </div>
       </nav>
-      <hr className="border-t border-gray-700 w-full" />
+  
+      <div className="container mx-auto px-6">
+        <hr className="border-t border-white w-full mt-5" />
+      </div>
     </div>
   );
 };
+
 
 export default Navbar;

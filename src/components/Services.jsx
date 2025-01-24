@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import PropTypes from 'prop-types';
 
 const Services = () => {
   const services = [
@@ -38,7 +39,7 @@ const Services = () => {
   const [hoveredService, setHoveredService] = useState(null);
 
   return (
-    <section className="bg-[#1A1A1A] text-white py-20" id='services'>
+    <section className="bg-[#1A1A1A] text-white py-20" id="services">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
           initial={{ opacity: 0, y: 50 }}
@@ -104,8 +105,6 @@ const Services = () => {
   );
 };
 
-import PropTypes from 'prop-types';
-
 const AnimatedOverlay = ({ isHovered, description }) => {
   return (
     <motion.div
@@ -128,7 +127,5 @@ AnimatedOverlay.propTypes = {
   isHovered: PropTypes.bool.isRequired,
   description: PropTypes.string.isRequired,
 };
-
-
 
 export default Services;
