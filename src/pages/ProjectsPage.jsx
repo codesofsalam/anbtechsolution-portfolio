@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight } from "lucide-react";
 
 const ProjectsPage = () => {
   const [activeFilter, setActiveFilter] = useState("All");
@@ -42,14 +42,14 @@ const ProjectsPage = () => {
       : projects.filter((p) => p.category === activeFilter);
 
   return (
-    <motion.section 
+    <motion.section
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       className="bg-[#1A1A1A] py-10 sm:py-20"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Company Description Section */}
-        <motion.div 
+        <motion.div
           initial={{ y: -50, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           className="text-center mb-10 sm:mb-16"
@@ -79,7 +79,7 @@ const ProjectsPage = () => {
         </div>
 
         {/* Category Filters */}
-        <motion.div 
+        <motion.div
           initial={{ y: 50, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           className="flex justify-center space-x-2 sm:space-x-4 mb-8 sm:mb-12 flex-wrap"
@@ -92,9 +92,9 @@ const ProjectsPage = () => {
                 px-3 sm:px-6 py-1 sm:py-2 rounded-full transition-all text-sm sm:text-base
                 mb-2
                 ${
-                  activeFilter === category 
-                  ? 'bg-purple-600 text-white' 
-                  : 'bg-white/10 text-gray-300 hover:bg-white/20'
+                  activeFilter === category
+                    ? "bg-purple-600 text-white"
+                    : "bg-white/10 text-gray-300 hover:bg-white/20"
                 }
               `}
             >
@@ -103,7 +103,7 @@ const ProjectsPage = () => {
           ))}
         </motion.div>
 
-        <motion.div 
+        <motion.div
           initial="hidden"
           whileInView="visible"
           className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
@@ -142,14 +142,14 @@ const ProjectsPage = () => {
 
         <AnimatePresence>
           {selectedProject && (
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 sm:p-8"
               onClick={() => setSelectedProject(null)}
             >
-              <motion.div 
+              <motion.div
                 initial={{ scale: 0.9 }}
                 animate={{ scale: 1 }}
                 exit={{ scale: 0.9 }}
@@ -157,16 +157,16 @@ const ProjectsPage = () => {
                 onClick={(e) => e.stopPropagation()}
               >
                 <div className="hidden sm:block">
-                  <img 
-                    src={selectedProject.fullImage} 
-                    alt={selectedProject.name} 
+                  <img
+                    src={selectedProject.fullImage}
+                    alt={selectedProject.name}
                     className="w-full h-full object-cover"
                   />
                 </div>
                 <div className="sm:hidden">
-                  <img 
-                    src={selectedProject.fullImage} 
-                    alt={selectedProject.name} 
+                  <img
+                    src={selectedProject.fullImage}
+                    alt={selectedProject.name}
                     className="w-full h-64 object-cover"
                   />
                 </div>
@@ -184,7 +184,7 @@ const ProjectsPage = () => {
         </AnimatePresence>
 
         {/* Let's Discuss Section */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
@@ -194,9 +194,9 @@ const ProjectsPage = () => {
             Let&apos;s Discuss Your Project
           </h2>
           <p className="text-sm sm:text-base text-gray-300 mb-6 sm:mb-8 max-w-2xl mx-auto">
-            Ready to turn your innovative idea into reality? We&apos;re
-            excited to hear about your project and discuss how OrbiMatrix can
-            help you achieve your goals.
+            Ready to turn your innovative idea into reality? We&apos;re excited
+            to hear about your project and discuss how OrbiMatrix can help you
+            achieve your goals.
           </p>
           <Link
             to="/contact"

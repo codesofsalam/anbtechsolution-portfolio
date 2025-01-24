@@ -1,4 +1,3 @@
-import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Linkedin, Facebook, Instagram } from "lucide-react";
@@ -36,7 +35,11 @@ const Footer = () => {
             transition={{ duration: 0.5 }}
             className="bg-white/5 rounded-xl p-4 md:p-6"
           >
-            <img src="/logo.png" alt="Company Logo" className="h-8 md:h-12 mb-4 md:mb-6" />
+            <img
+              src="/logo.png"
+              alt="Company Logo"
+              className="h-8 md:h-12 mb-4 md:mb-6"
+            />
             <p className="text-sm md:text-base text-gray-300 mb-4 md:mb-6">
               Innovative digital solutions at the intersection of technology and
               creativity — your trusted partner in crafting solutions for the
@@ -51,7 +54,9 @@ const Footer = () => {
             className="bg-white/5 rounded-xl p-4 md:p-6 grid grid-cols-2 gap-4 md:gap-8"
           >
             <div>
-              <h4 className="text-white font-semibold mb-3 md:mb-4 text-base md:text-lg">Quick Links</h4>
+              <h4 className="text-white font-semibold mb-3 md:mb-4 text-base md:text-lg">
+                Quick Links
+              </h4>
               {["Home", "Services", "Projects", "Contact"].map((link) => (
                 <motion.a
                   key={link}
@@ -64,10 +69,15 @@ const Footer = () => {
               ))}
             </div>
             <div>
-              <h4 className="text-white font-semibold mb-3 md:mb-4 text-base md:text-lg">Services</h4>
+              <h4 className="text-white font-semibold mb-3 md:mb-4 text-base md:text-lg">
+                Services
+              </h4>
               {["Web Dev", "Mobile Apps", "UI/UX", "Marketing"].map(
                 (service) => (
-                  <p key={service} className="text-sm md:text-base text-gray-300 mb-1 md:mb-2">
+                  <p
+                    key={service}
+                    className="text-sm md:text-base text-gray-300 mb-1 md:mb-2"
+                  >
                     {service}
                   </p>
                 )

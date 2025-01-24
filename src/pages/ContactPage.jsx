@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { User, Mail, MessageSquare, Send } from "lucide-react";
 import emailjs from "@emailjs/browser";
@@ -76,7 +76,7 @@ const ContactPage = () => {
               content: "text-gray-300",
             },
           });
-          
+
           setFormData({
             name: "",
             email: "",
@@ -123,7 +123,10 @@ const ContactPage = () => {
             Get In Touch
           </motion.h2>
 
-          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5 md:space-y-6">
+          <form
+            onSubmit={handleSubmit}
+            className="space-y-4 sm:space-y-5 md:space-y-6"
+          >
             {["name", "email"].map((field) => (
               <motion.div
                 key={field}
@@ -133,8 +136,12 @@ const ContactPage = () => {
                 className="relative"
               >
                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                  {field === "name" && <User className="h-4 w-4 sm:h-5 sm:w-5 text-purple-400" />}
-                  {field === "email" && <Mail className="h-4 w-4 sm:h-5 sm:w-5 text-purple-400" />}
+                  {field === "name" && (
+                    <User className="h-4 w-4 sm:h-5 sm:w-5 text-purple-400" />
+                  )}
+                  {field === "email" && (
+                    <Mail className="h-4 w-4 sm:h-5 sm:w-5 text-purple-400" />
+                  )}
                 </div>
 
                 <input
@@ -145,9 +152,11 @@ const ContactPage = () => {
                   onChange={handleChange}
                   className={`w-full pl-10 sm:pl-12 pr-4 py-2 sm:py-3 bg-white/10 text-white 
                     rounded-xl border text-sm sm:text-base transition duration-300 
-                    ${errors[field] 
-                      ? "border-red-500" 
-                      : "border-white/20 focus:border-purple-500"}`}
+                    ${
+                      errors[field]
+                        ? "border-red-500"
+                        : "border-white/20 focus:border-purple-500"
+                    }`}
                 />
                 {errors[field] && (
                   <motion.p
@@ -176,9 +185,11 @@ const ContactPage = () => {
                 onChange={handleChange}
                 className={`w-full pl-10 sm:pl-12 pr-4 py-2 sm:py-3 bg-white/10 text-white 
                   rounded-xl border text-sm sm:text-base transition duration-300 
-                  ${errors.message 
-                    ? "border-red-500" 
-                    : "border-white/20 focus:border-purple-500"}`}
+                  ${
+                    errors.message
+                      ? "border-red-500"
+                      : "border-white/20 focus:border-purple-500"
+                  }`}
               />
               {errors.message && (
                 <motion.p

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
@@ -7,9 +7,9 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleScrollToServices = () => {
-    const servicesSection = document.getElementById('services');
+    const servicesSection = document.getElementById("services");
     if (servicesSection) {
-      servicesSection.scrollIntoView({ behavior: 'smooth' });
+      servicesSection.scrollIntoView({ behavior: "smooth" });
       setIsMobileMenuOpen(false);
     }
   };
@@ -18,7 +18,7 @@ const Navbar = () => {
     { label: "Home", path: "/" },
     { label: "Services", onClick: handleScrollToServices },
     { label: "Project", path: "/projects" },
-    { label: "Contact", path: "/contact" }
+    { label: "Contact", path: "/contact" },
   ];
 
   const toggleMobileMenu = () => {
@@ -88,10 +88,7 @@ const Navbar = () => {
                 </Link>
               </motion.li>
             ))}
-            <motion.li
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-            >
+            <motion.li whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
               <Link
                 to="/contact"
                 className="bg-[#9333EA] text-white text-lg px-6 py-2 rounded-full hover:bg-purple-700 transition-colors shadow-md hover:shadow-lg"
