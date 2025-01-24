@@ -10,7 +10,7 @@ const Projects = () => {
   useEffect(() => {
     const handleSwipe = (e) => {
       if (!modalRef.current) return;
-      
+
       const touchStartY = e.touches[0].clientY;
       const handleTouchMove = (moveEvent) => {
         const touchEndY = moveEvent.touches[0].clientY;
@@ -19,16 +19,16 @@ const Projects = () => {
         }
       };
 
-      document.addEventListener('touchmove', handleTouchMove);
+      document.addEventListener("touchmove", handleTouchMove);
       return () => {
-        document.removeEventListener('touchmove', handleTouchMove);
+        document.removeEventListener("touchmove", handleTouchMove);
       };
     };
 
     if (selectedProject) {
-      document.addEventListener('touchstart', handleSwipe);
+      document.addEventListener("touchstart", handleSwipe);
       return () => {
-        document.removeEventListener('touchstart', handleSwipe);
+        document.removeEventListener("touchstart", handleSwipe);
       };
     }
   }, [selectedProject]);
@@ -175,12 +175,12 @@ const Projects = () => {
                   <img
                     src={selectedProject.fullImage}
                     alt={selectedProject.name}
-                    className="w-full max-h-[70vh] object-contain"
+                    className="w-full max-h-[60vh] object-contain md:max-h-[70vh]"
                   />
                 </div>
                 <div className="p-4 md:p-8 text-white flex flex-col justify-between space-y-4 overflow-y-auto">
                   <div>
-                    <h2 className="text-2xl md:text-3xl font-bold mb-3 text-center md:text-left">
+                    <h2 className="text-xl md:text-3xl font-bold mb-3 text-center md:text-left">
                       {selectedProject.name}
                     </h2>
                     <p className="text-gray-300 mb-4 text-sm md:text-base leading-relaxed text-center md:text-left">
@@ -189,7 +189,7 @@ const Projects = () => {
                   </div>
                   <div className="bg-white/10 p-3 rounded-lg mx-auto md:self-start">
                     <span className="text-xs md:text-sm text-gray-400 font-medium">
-                      Category: 
+                      Category:
                     </span>
                     <span className="text-xs md:text-sm text-white ml-2">
                       {selectedProject.category}
