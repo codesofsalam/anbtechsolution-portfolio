@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
 import { Linkedin, Facebook, Instagram } from "lucide-react";
-import { Link as ScrollLink } from "react-scroll";
 
 const Footer = () => {
   const socialLinks = [
@@ -23,16 +22,35 @@ const Footer = () => {
   ];
 
   const quickLinks = [
-    { label: "Services", path: "/services", scrollTarget: "services" },
+    { label: "Services", path: "/", scrollTarget: "services" },
     { label: "Projects", path: "/projects" },
-    { label: "Contact", path: "/contact", scrollTarget: "contact" },
+    { label: "Contact", path: "/contact" }
   ];
 
   const { pathname } = useLocation();
 
-  // Utility function to scroll to the top of a page
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const handleQuickLinkClick = (path, scrollTarget) => {
+    if (scrollTarget) {
+      if (pathname !== "/" && path === "/") {
+  
+        window.location.href = `/${scrollTarget ? '#' + scrollTarget : ''}`;
+      } else {
+       
+        const element = document.getElementById(scrollTarget);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+    } else {
+      
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: "instant" });
+      }, 100);
+    }
   };
 
   return (
@@ -43,7 +61,6 @@ const Footer = () => {
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {/* Company Info */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -51,11 +68,13 @@ const Footer = () => {
             className="bg-white/5 rounded-xl p-4 sm:p-5 lg:p-6"
           >
             <div className="flex flex-col items-center lg:items-start">
-              <img
-                src="/logo.png"
-                alt="Company Logo"
-                className="h-8 sm:h-10 lg:h-12 mb-4 lg:mb-6"
-              />
+              <Link to="/" onClick={scrollToTop}>
+                <img
+                  src="/logo.png"
+                  alt="Company Logo"
+                  className="h-8 sm:h-10 lg:h-12 mb-4 lg:mb-6 cursor-pointer"
+                />
+              </Link>
               <p className="text-sm sm:text-base text-gray-300 mb-4 lg:mb-6 text-center lg:text-left">
                 Innovative digital solutions at the intersection of technology
                 and creativity — your trusted partner in crafting solutions for
@@ -64,7 +83,6 @@ const Footer = () => {
             </div>
           </motion.div>
 
-          {/* Quick Links */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -76,33 +94,23 @@ const Footer = () => {
                 <h4 className="text-white font-semibold mb-3 text-base sm:text-lg">
                   Quick Links
                 </h4>
-                {quickLinks.map(({ label, path, scrollTarget }) =>
-                  pathname === "/" && scrollTarget ? (
-                    <ScrollLink
-                      key={label}
-                      to={scrollTarget}
-                      smooth
-                      duration={500}
-                      offset={-100}
-                      className="block text-sm sm:text-base text-gray-300 mb-2 hover:text-white transition-colors cursor-pointer"
-                    >
-                      {label}
-                    </ScrollLink>
-                  ) : (
-                    <Link
-                      key={label}
-                      to={path}
-                      onClick={
-                        path === "/projects" || path === "/contact"
-                          ? scrollToTop
-                          : undefined
+                {quickLinks.map(({ label, path, scrollTarget }) => (
+                  <Link
+                    key={label}
+                    to={path}
+                    onClick={(e) => {
+                      if (scrollTarget) {
+                        e.preventDefault();
+                        handleQuickLinkClick(path, scrollTarget);
+                      } else {
+                        handleQuickLinkClick(path, null);
                       }
-                      className="block text-sm sm:text-base text-gray-300 mb-2 hover:text-white transition-colors"
-                    >
-                      {label}
-                    </Link>
-                  )
-                )}
+                    }}
+                    className="block text-sm sm:text-base text-gray-300 mb-2 hover:text-white transition-colors"
+                  >
+                    {label}
+                  </Link>
+                ))}
               </div>
               <div>
                 <h4 className="text-white font-semibold mb-3 text-base sm:text-lg">
@@ -122,7 +130,6 @@ const Footer = () => {
             </div>
           </motion.div>
 
-          {/* Contact and Social Links */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -140,7 +147,11 @@ const Footer = () => {
                 hover:bg-purple-700 transition-colors 
                 font-semibold text-sm sm:text-base lg:text-lg shadow-md w-full sm:w-auto"
               >
-                <Link to="/contact" className="block w-full h-full text-white">
+                <Link 
+                  to="/contact" 
+                  className="block w-full h-full text-white"
+                  onClick={() => handleQuickLinkClick('/contact', null)}
+                >
                   Let&apos;s Discuss
                 </Link>
               </motion.button>
@@ -168,7 +179,15 @@ const Footer = () => {
           transition={{ duration: 0.6 }}
           className="text-center text-xs sm:text-sm lg:text-base text-gray-400 mt-6 sm:mt-8 lg:mt-12 pt-4 sm:pt-6 lg:pt-8 border-t border-white/10"
         >
-          © {new Date().getFullYear()} ANB Tech Solution. All rights reserved.
+          <button
+            onClick={scrollToTop}
+            className="text-gray-300 hover:text-white transition-colors"
+          >
+            Back to Top
+          </button>
+          <p>
+            © {new Date().getFullYear()} ANB Tech Solution. All rights reserved.
+          </p>
         </motion.div>
       </div>
     </motion.section>
