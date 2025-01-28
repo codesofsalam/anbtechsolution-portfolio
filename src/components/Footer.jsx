@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Linkedin, Facebook, Instagram } from "lucide-react";
+import { Link as ScrollLink } from "react-scroll";
 
 const Footer = () => {
   const socialLinks = [
@@ -21,6 +22,19 @@ const Footer = () => {
     },
   ];
 
+  const quickLinks = [
+    { label: "Services", path: "/services", scrollTarget: "services" },
+    { label: "Projects", path: "/projects" },
+    { label: "Contact", path: "/contact", scrollTarget: "contact" },
+  ];
+
+  const { pathname } = useLocation();
+
+  // Utility function to scroll to the top of a page
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <motion.section
       initial={{ opacity: 0 }}
@@ -29,6 +43,7 @@ const Footer = () => {
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          {/* Company Info */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -49,6 +64,7 @@ const Footer = () => {
             </div>
           </motion.div>
 
+          {/* Quick Links */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -60,16 +76,33 @@ const Footer = () => {
                 <h4 className="text-white font-semibold mb-3 text-base sm:text-lg">
                   Quick Links
                 </h4>
-                {["Home", "Services", "Projects", "Contact"].map((link) => (
-                  <motion.a
-                    key={link}
-                    href={`/${link.toLowerCase()}`}
-                    whileHover={{ x: 5 }}
-                    className="block text-sm sm:text-base text-gray-300 mb-2 hover:text-white transition-colors"
-                  >
-                    {link}
-                  </motion.a>
-                ))}
+                {quickLinks.map(({ label, path, scrollTarget }) =>
+                  pathname === "/" && scrollTarget ? (
+                    <ScrollLink
+                      key={label}
+                      to={scrollTarget}
+                      smooth
+                      duration={500}
+                      offset={-100}
+                      className="block text-sm sm:text-base text-gray-300 mb-2 hover:text-white transition-colors cursor-pointer"
+                    >
+                      {label}
+                    </ScrollLink>
+                  ) : (
+                    <Link
+                      key={label}
+                      to={path}
+                      onClick={
+                        path === "/projects" || path === "/contact"
+                          ? scrollToTop
+                          : undefined
+                      }
+                      className="block text-sm sm:text-base text-gray-300 mb-2 hover:text-white transition-colors"
+                    >
+                      {label}
+                    </Link>
+                  )
+                )}
               </div>
               <div>
                 <h4 className="text-white font-semibold mb-3 text-base sm:text-lg">
@@ -89,6 +122,7 @@ const Footer = () => {
             </div>
           </motion.div>
 
+          {/* Contact and Social Links */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
