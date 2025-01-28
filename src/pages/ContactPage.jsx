@@ -105,24 +105,24 @@ const ContactPage = () => {
   };
 
   return (
-    <div className="mt-10 min-h-screen bg-[#1A1A1A] py-8 px-4 md:py-12 lg:py-16 flex items-center justify-center">
+    <div className="mt-10 min-h-screen bg-[#1A1A1A] py-4 sm:py-6 md:py-12 lg:py-16 px-3 sm:px-4 flex items-center justify-center">
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
-        className="w-full max-w-[90%] md:max-w-lg lg:max-w-xl"
+        className="w-full max-w-[95%] sm:max-w-[90%] md:max-w-lg lg:max-w-xl"
       >
         <motion.div
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-6 md:mb-8 lg:mb-10"
+          className="text-center mb-4 sm:mb-6 md:mb-8 lg:mb-10"
         >
           <motion.h1
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6 }}
-            className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2 md:mb-3"
+            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2 md:mb-3"
           >
             Ready to Get Started?
           </motion.h1>
@@ -134,17 +134,17 @@ const ContactPage = () => {
           transition={{ duration: 0.5 }}
           className="bg-white/10 backdrop-blur-lg rounded-xl shadow-xl border border-white/20 overflow-hidden"
         >
-          <div className="p-4 md:p-6 lg:p-8">
+          <div className="p-3 sm:p-4 md:p-6 lg:p-8">
             <motion.h2
               initial={{ y: -50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.5 }}
-              className="text-xl md:text-2xl lg:text-3xl font-bold text-center text-white mb-6 md:mb-8"
+              className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-center text-white mb-4 sm:mb-6 md:mb-8"
             >
               Get In Touch
             </motion.h2>
 
-            <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4 md:space-y-6">
               {["name", "email"].map((field) => (
                 <motion.div
                   key={field}
@@ -153,7 +153,7 @@ const ContactPage = () => {
                   transition={{ duration: 0.4 }}
                   className="relative"
                 >
-                  <div className="absolute inset-y-0 left-0 pl-3 md:pl-4 flex items-center pointer-events-none">
+                  <div className="absolute inset-y-0 left-0 pl-2 sm:pl-3 md:pl-4 flex items-center pointer-events-none">
                     {field === "name" ? (
                       <User className="h-4 w-4 md:h-5 md:w-5 text-purple-400" />
                     ) : (
@@ -167,7 +167,7 @@ const ContactPage = () => {
                     placeholder={`Enter your ${field}`}
                     value={formData[field]}
                     onChange={handleChange}
-                    className={`w-full pl-10 md:pl-12 pr-3 md:pr-4 py-2.5 md:py-3 bg-white/10 text-white 
+                    className={`w-full pl-8 sm:pl-10 md:pl-12 pr-2 sm:pr-3 md:pr-4 py-2 sm:py-2.5 md:py-3 bg-white/10 text-white 
                       rounded-lg text-sm md:text-base transition duration-300 
                       ${
                         errors[field]
@@ -179,7 +179,7 @@ const ContactPage = () => {
                     <motion.p
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
-                      className="mt-1 text-xs md:text-sm text-red-400 pl-3"
+                      className="mt-1 text-xs md:text-sm text-red-400 pl-2 sm:pl-3"
                     >
                       {errors[field]}
                     </motion.p>
@@ -193,14 +193,14 @@ const ContactPage = () => {
                 transition={{ duration: 0.4 }}
                 className="relative"
               >
-                <MessageSquare className="absolute top-3 left-3 md:left-4 h-4 w-4 md:h-5 md:w-5 text-purple-400" />
+                <MessageSquare className="absolute top-3 left-2 sm:left-3 md:left-4 h-4 w-4 md:h-5 md:w-5 text-purple-400" />
                 <textarea
                   name="message"
                   placeholder="Your message"
                   rows={4}
                   value={formData.message}
                   onChange={handleChange}
-                  className={`w-full pl-10 md:pl-12 pr-3 md:pr-4 py-2.5 md:py-3 bg-white/10 text-white 
+                  className={`w-full pl-8 sm:pl-10 md:pl-12 pr-2 sm:pr-3 md:pr-4 py-2 sm:py-2.5 md:py-3 bg-white/10 text-white 
                     rounded-lg text-sm md:text-base transition duration-300 
                     ${
                       errors.message
@@ -212,7 +212,7 @@ const ContactPage = () => {
                   <motion.p
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    className="mt-1 text-xs md:text-sm text-red-400 pl-3"
+                    className="mt-1 text-xs md:text-sm text-red-400 pl-2 sm:pl-3"
                   >
                     {errors.message}
                   </motion.p>
@@ -224,7 +224,7 @@ const ContactPage = () => {
                 whileTap={{ scale: 0.98 }}
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-2.5 md:py-3 bg-purple-600 text-white rounded-lg 
+                className="w-full py-2 sm:py-2.5 md:py-3 bg-purple-600 text-white rounded-lg 
                   hover:bg-purple-700 transition duration-300 
                   flex items-center justify-center space-x-2 group
                   text-sm md:text-base font-medium
