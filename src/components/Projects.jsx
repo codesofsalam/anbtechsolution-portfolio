@@ -66,18 +66,18 @@ const Projects = () => {
     <motion.section
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
-      className="bg-[#1A1A1A] py-12 md:py-20"
+      className="bg-[#1A1A1A] py-8 sm:py-12 lg:py-20"
     >
-      <div className="container mx-auto px-4 md:px-6">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ y: -50, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
-          className="text-center mb-8 md:mb-12"
+          className="text-center mb-6 sm:mb-8 lg:mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-3 sm:mb-4">
             Featured Projects
           </h2>
-          <p className="text-base md:text-xl text-gray-300 max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base lg:text-xl text-gray-300 max-w-2xl mx-auto px-4">
             Innovative solutions that push technological boundaries
           </p>
         </motion.div>
@@ -85,14 +85,14 @@ const Projects = () => {
         <motion.div
           initial={{ y: 50, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
-          className="flex justify-center space-x-2 md:space-x-4 mb-8 md:mb-12 flex-wrap"
+          className="flex justify-center flex-wrap gap-2 sm:gap-3 mb-6 sm:mb-8 lg:mb-12 px-2"
         >
           {categories.map((category) => (
             <button
               key={category}
               onClick={() => setSelectedCategory(category)}
               className={`
-                px-4 md:px-6 py-1 md:py-2 rounded-full transition-all m-1
+                px-3 sm:px-4 lg:px-6 py-1 sm:py-2 rounded-full text-sm sm:text-base transition-all
                 ${
                   selectedCategory === category
                     ? "bg-purple-600 text-white"
@@ -108,7 +108,7 @@ const Projects = () => {
         <motion.div
           initial="hidden"
           whileInView="visible"
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
         >
           {projects
             .filter(
@@ -121,7 +121,7 @@ const Projects = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: index * 0.2 }}
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.02 }}
                 onClick={() => setSelectedProject(project)}
                 className="bg-white/5 rounded-xl overflow-hidden cursor-pointer"
               >
@@ -129,17 +129,17 @@ const Projects = () => {
                   <img
                     src={project.image}
                     alt={project.name}
-                    className="w-full h-48 object-cover"
+                    className="w-full h-40 sm:h-44 lg:h-48 object-cover"
                   />
                   <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
-                    <ArrowUpRight className="text-white w-12 h-12" />
+                    <ArrowUpRight className="text-white w-8 sm:w-10 lg:w-12 h-8 sm:h-10 lg:h-12" />
                   </div>
                 </div>
-                <div className="p-4 md:p-6">
-                  <h3 className="text-lg md:text-xl font-semibold text-white mb-2">
+                <div className="p-3 sm:p-4 lg:p-6">
+                  <h3 className="text-base sm:text-lg lg:text-xl font-semibold text-white mb-2">
                     {project.name}
                   </h3>
-                  <p className="text-gray-400 text-sm md:text-base">
+                  <p className="text-gray-400 text-xs sm:text-sm lg:text-base">
                     {project.category}
                   </p>
                 </div>
@@ -153,7 +153,7 @@ const Projects = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-2 md:p-8 overflow-y-auto"
+              className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-2 sm:p-4 lg:p-8 overflow-y-auto"
               onClick={() => setSelectedProject(null)}
             >
               <motion.div
@@ -161,37 +161,37 @@ const Projects = () => {
                 initial={{ scale: 0.9 }}
                 animate={{ scale: 1 }}
                 exit={{ scale: 0.9 }}
-                className="bg-white/10 rounded-xl w-full max-w-4xl flex flex-col md:grid md:grid-cols-2 overflow-hidden relative"
+                className="bg-white/10 rounded-xl w-full max-w-4xl flex flex-col lg:grid lg:grid-cols-2 overflow-hidden relative"
                 onClick={(e) => e.stopPropagation()}
               >
                 <button
                   onClick={() => setSelectedProject(null)}
-                  className="absolute top-2 right-2 p-2 bg-white/10 hover:bg-white/20 rounded-full text-white z-50 w-10 h-10 flex items-center justify-center"
+                  className="absolute top-2 right-2 p-1.5 sm:p-2 bg-white/10 hover:bg-white/20 rounded-full text-white z-50 w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center"
                 >
-                  <X className="w-6 h-6" />
+                  <X className="w-5 h-5 sm:w-6 sm:h-6" />
                 </button>
 
-                <div className="flex items-center justify-center p-4 md:p-6 w-full relative">
+                <div className="flex items-center justify-center p-3 sm:p-4 lg:p-6 w-full relative">
                   <img
                     src={selectedProject.fullImage}
                     alt={selectedProject.name}
-                    className="w-full max-h-[60vh] object-contain md:max-h-[70vh]"
+                    className="w-full h-48 sm:h-56 lg:h-[60vh] object-contain"
                   />
                 </div>
-                <div className="p-4 md:p-8 text-white flex flex-col justify-between space-y-4 overflow-y-auto">
+                <div className="p-3 sm:p-4 lg:p-8 text-white flex flex-col justify-between space-y-3 sm:space-y-4 overflow-y-auto">
                   <div>
-                    <h2 className="text-xl md:text-3xl font-bold mb-3 text-center md:text-left">
+                    <h2 className="text-lg sm:text-xl lg:text-3xl font-bold mb-2 sm:mb-3 text-center lg:text-left">
                       {selectedProject.name}
                     </h2>
-                    <p className="text-gray-300 mb-4 text-sm md:text-base leading-relaxed text-center md:text-left">
+                    <p className="text-gray-300 mb-3 sm:mb-4 text-xs sm:text-sm lg:text-base leading-relaxed text-center lg:text-left">
                       {selectedProject.description}
                     </p>
                   </div>
-                  <div className="bg-white/10 p-3 rounded-lg mx-auto md:self-start">
-                    <span className="text-xs md:text-sm text-gray-400 font-medium">
+                  <div className="bg-white/10 p-2 sm:p-3 rounded-lg mx-auto lg:mx-0">
+                    <span className="text-xs sm:text-sm text-gray-400 font-medium">
                       Category:
                     </span>
-                    <span className="text-xs md:text-sm text-white ml-2">
+                    <span className="text-xs sm:text-sm text-white ml-2">
                       {selectedProject.category}
                     </span>
                   </div>

@@ -20,6 +20,10 @@ const ContactPage = () => {
       ...prevState,
       [name]: value,
     }));
+
+    if (errors[name]) {
+      setErrors((prev) => ({ ...prev, [name]: "" }));
+    }
   };
 
   const validateForm = () => {
@@ -43,7 +47,7 @@ const ContactPage = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (validateForm()) {
@@ -60,70 +64,65 @@ const ContactPage = () => {
         message: formData.message,
       };
 
-      emailjs
-        .send(serviceId, templateId, templateParams, publicKey)
-        .then(() => {
-          Swal.fire({
-            icon: "success",
-            title: "Message Sent!",
-            text: "Your message has been sent successfully. We will get back to you soon!",
-            confirmButtonColor: "#7C3AED",
-            background: "#1A1A1A",
-            color: "#FFFFFF",
-            customClass: {
-              popup: "rounded-lg shadow-lg",
-              title: "text-white font-bold",
-              content: "text-gray-300",
-            },
-          });
-
-          setFormData({
-            name: "",
-            email: "",
-            message: "",
-          });
-        })
-        .catch((error) => {
-          Swal.fire({
-            icon: "error",
-            title: "Oops!",
-            text: "There was an error sending your message. Please try again later.",
-            confirmButtonColor: "#7C3AED",
-            background: "#1A1A1A",
-            color: "#FFFFFF",
-            customClass: {
-              popup: "rounded-lg shadow-lg",
-              title: "text-white font-bold",
-              content: "text-gray-300",
-            },
-          });
-          console.error("Error sending email", error);
-        })
-        .finally(() => {
-          setIsSubmitting(false);
+      try {
+        await emailjs.send(serviceId, templateId, templateParams, publicKey);
+        Swal.fire({
+          icon: "success",
+          title: "Message Sent!",
+          text: "Your message has been sent successfully. We will get back to you soon!",
+          confirmButtonColor: "#7C3AED",
+          background: "#1A1A1A",
+          color: "#FFFFFF",
+          customClass: {
+            popup: "rounded-lg shadow-lg",
+            title: "text-white font-bold",
+            content: "text-gray-300",
+            confirmButton: "text-sm md:text-base",
+          },
         });
+
+        setFormData({ name: "", email: "", message: "" });
+      } catch (error) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops!",
+          text: "There was an error sending your message. Please try again later.",
+          confirmButtonColor: "#7C3AED",
+          background: "#1A1A1A",
+          color: "#FFFFFF",
+          customClass: {
+            popup: "rounded-lg shadow-lg",
+            title: "text-white font-bold",
+            content: "text-gray-300",
+            confirmButton: "text-sm md:text-base",
+          },
+        });
+        console.error("Error sending email:", error);
+      } finally {
+        setIsSubmitting(false);
+      }
     }
   };
 
   return (
-    <div className="min-h-screen bg-[#1A1A1A] px-4 flex items-center justify-center">
+    <div className="mt-10 min-h-screen bg-[#1A1A1A] py-8 px-4 md:py-12 lg:py-16 flex items-center justify-center">
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
-        className="w-full max-w-xl xs:max-w-xs sm:max-w-sm md:max-w-md lg:max-w-xl xl:max-w-xl 2xl:max-w-2xl"
+        className="w-full max-w-[90%] md:max-w-lg lg:max-w-xl"
       >
         <motion.div
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-6 xs:mb-7 sm:mb-8 md:mb-10 lg:mb-12"
+          className="text-center mb-6 md:mb-8 lg:mb-10"
         >
           <motion.h1
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6 }}
-            className="text-2xl xs:text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-bold text-white mb-2 xs:mb-3 sm:mb-4"
+            className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2 md:mb-3"
           >
             Ready to Get Started?
           </motion.h1>
@@ -133,22 +132,19 @@ const ContactPage = () => {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl border border-white/20 overflow-hidden"
+          className="bg-white/10 backdrop-blur-lg rounded-xl shadow-xl border border-white/20 overflow-hidden"
         >
-          <div className="p-4 xs:p-5 sm:p-6 md:p-8 lg:p-10">
+          <div className="p-4 md:p-6 lg:p-8">
             <motion.h2
               initial={{ y: -50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.5 }}
-              className="text-xl xs:text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-bold text-center text-white mb-4 xs:mb-5 sm:mb-6 md:mb-8 lg:mb-10 tracking-tight"
+              className="text-xl md:text-2xl lg:text-3xl font-bold text-center text-white mb-6 md:mb-8"
             >
               Get In Touch
             </motion.h2>
 
-            <form
-              onSubmit={handleSubmit}
-              className="space-y-3 xs:space-y-4 sm:space-y-5 md:space-y-6"
-            >
+            <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
               {["name", "email"].map((field) => (
                 <motion.div
                   key={field}
@@ -157,12 +153,11 @@ const ContactPage = () => {
                   transition={{ duration: 0.4 }}
                   className="relative"
                 >
-                  <div className="absolute inset-y-0 left-0 pl-3 xs:pl-4 sm:pl-4 flex items-center pointer-events-none">
-                    {field === "name" && (
-                      <User className="h-3 w-3 xs:h-4 xs:w-4 sm:h-5 sm:w-5 text-purple-400" />
-                    )}
-                    {field === "email" && (
-                      <Mail className="h-3 w-3 xs:h-4 xs:w-4 sm:h-5 sm:w-5 text-purple-400" />
+                  <div className="absolute inset-y-0 left-0 pl-3 md:pl-4 flex items-center pointer-events-none">
+                    {field === "name" ? (
+                      <User className="h-4 w-4 md:h-5 md:w-5 text-purple-400" />
+                    ) : (
+                      <Mail className="h-4 w-4 md:h-5 md:w-5 text-purple-400" />
                     )}
                   </div>
 
@@ -172,19 +167,19 @@ const ContactPage = () => {
                     placeholder={`Enter your ${field}`}
                     value={formData[field]}
                     onChange={handleChange}
-                    className={`w-full pl-8 xs:pl-10 sm:pl-12 pr-3 xs:pr-4 sm:pr-4 py-2 xs:py-2.5 sm:py-3 bg-white/10 text-white 
-                      rounded-xl border text-xs xs:text-sm sm:text-base transition duration-300 
+                    className={`w-full pl-10 md:pl-12 pr-3 md:pr-4 py-2.5 md:py-3 bg-white/10 text-white 
+                      rounded-lg text-sm md:text-base transition duration-300 
                       ${
                         errors[field]
                           ? "border-red-500"
                           : "border-white/20 focus:border-purple-500"
-                      }`}
+                      } border`}
                   />
                   {errors[field] && (
                     <motion.p
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
-                      className="mt-1 text-[10px] xs:text-xs sm:text-sm text-red-400 pl-3 xs:pl-4"
+                      className="mt-1 text-xs md:text-sm text-red-400 pl-3"
                     >
                       {errors[field]}
                     </motion.p>
@@ -198,26 +193,26 @@ const ContactPage = () => {
                 transition={{ duration: 0.4 }}
                 className="relative"
               >
-                <MessageSquare className="absolute top-2.5 xs:top-3 sm:top-4 left-3 xs:left-4 sm:left-4 h-3 w-3 xs:h-4 xs:w-4 sm:h-5 sm:w-5 text-purple-400" />
+                <MessageSquare className="absolute top-3 left-3 md:left-4 h-4 w-4 md:h-5 md:w-5 text-purple-400" />
                 <textarea
                   name="message"
                   placeholder="Your message"
                   rows={4}
                   value={formData.message}
                   onChange={handleChange}
-                  className={`w-full pl-8 xs:pl-10 sm:pl-12 pr-3 xs:pr-4 sm:pr-4 py-2 xs:py-2.5 sm:py-3 bg-white/10 text-white 
-                    rounded-xl border text-xs xs:text-sm sm:text-base transition duration-300 
+                  className={`w-full pl-10 md:pl-12 pr-3 md:pr-4 py-2.5 md:py-3 bg-white/10 text-white 
+                    rounded-lg text-sm md:text-base transition duration-300 
                     ${
                       errors.message
                         ? "border-red-500"
                         : "border-white/20 focus:border-purple-500"
-                    }`}
+                    } border`}
                 />
                 {errors.message && (
                   <motion.p
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    className="mt-1 text-[10px] xs:text-xs sm:text-sm text-red-400 pl-3 xs:pl-4"
+                    className="mt-1 text-xs md:text-sm text-red-400 pl-3"
                   >
                     {errors.message}
                   </motion.p>
@@ -225,17 +220,18 @@ const ContactPage = () => {
               </motion.div>
 
               <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-2.5 xs:py-3 sm:py-4 bg-purple-600 text-white rounded-xl 
+                className="w-full py-2.5 md:py-3 bg-purple-600 text-white rounded-lg 
                   hover:bg-purple-700 transition duration-300 
-                  flex items-center justify-center space-x-2 group text-xs xs:text-sm sm:text-base
+                  flex items-center justify-center space-x-2 group
+                  text-sm md:text-base font-medium
                   disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <span>{isSubmitting ? "Sending..." : "Send Message"}</span>
-                <Send className="h-3 w-3 xs:h-4 xs:w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition" />
+                <Send className="h-4 w-4 md:h-5 md:w-5 group-hover:translate-x-1 transition" />
               </motion.button>
             </form>
           </div>
