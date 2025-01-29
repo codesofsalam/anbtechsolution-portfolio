@@ -15,7 +15,7 @@ const Projects = () => {
       category: "Web App",
       description:
         "C&S Limousine Services provides premium chauffeur services for any occasion. They have a fleet of luxury vehicles and employ professional, courteous drivers to ensure a comfortable and reliable transportation experience.",
-      image: "/limousine.PNG",
+      image: "/limousine.png",
       fullImages: [
         "/limousine1.png",
         "/limousine2.png",
