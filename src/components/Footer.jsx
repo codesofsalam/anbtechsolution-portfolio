@@ -179,12 +179,7 @@ const Footer = () => {
           transition={{ duration: 0.6 }}
           className="text-center text-xs sm:text-sm lg:text-base text-gray-400 mt-6 sm:mt-8 lg:mt-12 pt-4 sm:pt-6 lg:pt-8 border-t border-white/10"
         >
-          <button
-            onClick={scrollToTop}
-            className="text-gray-300 hover:text-white transition-colors"
-          >
-            Back to Top
-          </button>
+          
           <p>
             © {new Date().getFullYear()} ANB Tech Solution. All rights reserved.
           </p>
