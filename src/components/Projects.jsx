@@ -230,7 +230,7 @@ const Projects = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/90 z-50 p-2 md:p-4 lg:p-8 overflow-y-auto"
+              className="fixed inset-0 bg-black/90 z-50 p-1 sm:p-2 md:p-4 lg:p-8 overflow-y-auto"
               onClick={() => setSelectedProject(null)}
             >
               <motion.div
@@ -238,22 +238,22 @@ const Projects = () => {
                 initial={{ scale: 0.9 }}
                 animate={{ scale: 1 }}
                 exit={{ scale: 0.9 }}
-                className="bg-white/5 rounded-xl w-full max-w-5xl mx-auto my-4 md:my-8 flex flex-col lg:grid lg:grid-cols-2 overflow-hidden relative"
+                className="bg-black/90 rounded-xl w-full max-w-4xl mx-auto my-2 sm:my-4 md:my-8 overflow-hidden relative"
                 onClick={(e) => e.stopPropagation()}
               >
                 <button
                   onClick={() => setSelectedProject(null)}
-                  className="absolute top-2 right-2 p-2 bg-white/10 hover:bg-white/20 rounded-full text-white z-50"
+                  className="absolute top-2 sm:top-4 right-2 sm:right-4 p-1 sm:p-2 bg-white/10 hover:bg-white/20 rounded-full text-white z-50"
                 >
-                  <X className="w-6 h-6" />
+                  <X className="w-6 sm:w-8 h-6 sm:h-8" />
                 </button>
 
-                <div className="relative flex items-center justify-center p-4 bg-black/50">
+                <div className="relative h-[60vh] sm:h-[70vh] w-full bg-black">
                   <button
                     onClick={handlePrevImage}
-                    className="absolute left-4 p-2 bg-white/10 hover:bg-white/20 rounded-full text-white z-10 transform transition-transform hover:scale-110"
+                    className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 p-1 sm:p-2 bg-white/10 hover:bg-white/20 rounded-full text-white z-10 transform transition-transform hover:scale-110"
                   >
-                    <ChevronLeft className="w-6 h-6" />
+                    <ChevronLeft className="w-6 sm:w-8 h-6 sm:h-8" />
                   </button>
 
                   <img
@@ -261,22 +261,22 @@ const Projects = () => {
                     alt={`${selectedProject.name} - Image ${
                       currentImageIndex + 1
                     }`}
-                    className="w-full h-48 md:h-64 lg:h-[60vh] object-contain"
+                    className="w-full h-full object-contain p-2 sm:p-4"
                   />
 
                   <button
                     onClick={handleNextImage}
-                    className="absolute right-4 p-2 bg-white/10 hover:bg-white/20 rounded-full text-white z-10 transform transition-transform hover:scale-110"
+                    className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-1 sm:p-2 bg-white/10 hover:bg-white/20 rounded-full text-white z-10 transform transition-transform hover:scale-110"
                   >
-                    <ChevronRight className="w-6 h-6" />
+                    <ChevronRight className="w-6 sm:w-8 h-6 sm:h-8" />
                   </button>
 
-                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+                  <div className="absolute bottom-2 sm:bottom-4 left-1/2 -translate-x-1/2 flex gap-1 sm:gap-2">
                     {selectedProject.fullImages.map((_, index) => (
                       <button
                         key={index}
                         onClick={() => setCurrentImageIndex(index)}
-                        className={`w-2 h-2 rounded-full transition-all ${
+                        className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all ${
                           currentImageIndex === index
                             ? "bg-white scale-125"
                             : "bg-white/30"
@@ -286,23 +286,18 @@ const Projects = () => {
                   </div>
                 </div>
 
-                <div className="p-4 md:p-6 lg:p-8 text-white flex flex-col justify-between space-y-4 overflow-y-auto">
-                  <div>
-                    <h2 className="text-xl md:text-2xl lg:text-3xl font-bold mb-3 text-center lg:text-left">
+                <div className="p-4 sm:p-6 md:p-8 space-y-2 sm:space-y-4 bg-black/80">
+                  <div className="text-center">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-1 sm:mb-2">
                       {selectedProject.name}
                     </h2>
-                    <p className="text-gray-300 mb-4 text-sm md:text-base leading-relaxed text-center lg:text-left">
-                      {selectedProject.description}
+                    <p className="text-xs sm:text-sm md:text-base text-purple-400 font-medium">
+                      {selectedProject.category}
                     </p>
                   </div>
-                  <div className="bg-white/10 p-3 rounded-lg mx-auto lg:mx-0 w-full md:w-auto">
-                    <span className="text-sm md:text-base text-gray-400 font-medium">
-                      Category:
-                    </span>
-                    <span className="text-sm md:text-base text-white ml-2">
-                      {selectedProject.category}
-                    </span>
-                  </div>
+                  <p className="text-gray-300 text-xs sm:text-sm md:text-base leading-relaxed text-center max-w-2xl mx-auto">
+                    {selectedProject.description}
+                  </p>
                 </div>
               </motion.div>
             </motion.div>

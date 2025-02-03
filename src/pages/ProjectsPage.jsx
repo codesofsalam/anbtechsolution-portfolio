@@ -145,19 +145,19 @@ const ProjectsPage = () => {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
-      className="bg-[#1A1A1A] mt-20 min-h-screen py-6 md:py-10 lg:py-20"
+      className="bg-[#1A1A1A] mt-10 sm:mt-15 md:mt-20 min-h-screen py-4 sm:py-6 md:py-10 lg:py-20"
     >
-      <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
+      <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8 max-w-7xl">
         <motion.div
           initial={{ y: -50, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true }}
-          className="text-center mb-8 md:mb-12 lg:mb-16"
+          className="text-center mb-6 sm:mb-8 md:mb-12 lg:mb-16"
         >
-          <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-6 text-white">
+          <h1 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold mb-2 sm:mb-3 md:mb-6 text-white">
             ANB Tech Solution
           </h1>
-          <p className="max-w-4xl mx-auto text-gray-300 text-sm md:text-base lg:text-lg leading-relaxed px-2">
+          <p className="max-w-4xl mx-auto text-gray-300 text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed px-1 sm:px-2">
             At ANB Tech Solution, we are passionate about transforming
             innovative ideas into cutting-edge digital solutions. Our team of
             expert developers, designers, and blockchain specialists are
@@ -170,12 +170,12 @@ const ProjectsPage = () => {
           initial={{ y: -50, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true }}
-          className="text-center mb-6 md:mb-8 lg:mb-12"
+          className="text-center mb-4 sm:mb-6 md:mb-8 lg:mb-12"
         >
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2">
             Featured Projects
           </h2>
-          <p className="text-sm md:text-base lg:text-lg text-gray-300 max-w-2xl mx-auto">
+          <p className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-300 max-w-2xl mx-auto">
             Innovative solutions that push technological boundaries
           </p>
         </motion.div>
@@ -184,14 +184,14 @@ const ProjectsPage = () => {
           initial={{ y: 50, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true }}
-          className="flex justify-center flex-wrap gap-3 mb-8"
+          className="flex justify-center flex-wrap gap-2 sm:gap-3 mb-6 sm:mb-8"
         >
           {categories.map((category) => (
             <button
               key={category}
               onClick={() => setSelectedCategory(category)}
               className={`
-                px-6 py-3 rounded-full text-base font-medium transition-all
+                px-3 sm:px-4 md:px-6 py-2 sm:py-3 rounded-full text-xs sm:text-sm md:text-base font-medium transition-all
                 ${
                   selectedCategory === category
                     ? "bg-purple-600 text-white shadow-lg shadow-purple-500/30"
@@ -208,7 +208,7 @@ const ProjectsPage = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6 lg:gap-8"
         >
           {projects
             .filter(
@@ -233,14 +233,14 @@ const ProjectsPage = () => {
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
-                    <ArrowUpRight className="text-white w-8 md:w-10 lg:w-12 h-8 md:h-10 lg:h-12" />
+                    <ArrowUpRight className="text-white w-6 sm:w-8 md:w-10 lg:w-12 h-6 sm:h-8 md:h-10 lg:h-12" />
                   </div>
                 </div>
-                <div className="p-4 md:p-6">
-                  <h3 className="text-lg md:text-xl font-semibold text-white mb-2">
+                <div className="p-3 sm:p-4 md:p-6">
+                  <h3 className="text-base sm:text-lg md:text-xl font-semibold text-white mb-1 sm:mb-2">
                     {project.name}
                   </h3>
-                  <p className="text-gray-400 text-sm md:text-base">
+                  <p className="text-gray-400 text-xs sm:text-sm md:text-base">
                     {project.category}
                   </p>
                 </div>
@@ -254,7 +254,7 @@ const ProjectsPage = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/90 z-50 p-2 md:p-4 lg:p-8 overflow-y-auto"
+              className="fixed inset-0 bg-black/90 z-50 p-1 sm:p-2 md:p-4 lg:p-8 overflow-y-auto"
               onClick={() => setSelectedProject(null)}
             >
               <motion.div
@@ -262,22 +262,22 @@ const ProjectsPage = () => {
                 initial={{ scale: 0.9 }}
                 animate={{ scale: 1 }}
                 exit={{ scale: 0.9 }}
-                className="bg-white/5 rounded-xl w-full max-w-5xl mx-auto my-4 md:my-8 flex flex-col lg:grid lg:grid-cols-2 overflow-hidden relative"
+                className="bg-black/90 rounded-xl w-full max-w-4xl mx-auto my-2 sm:my-4 md:my-8 overflow-hidden relative"
                 onClick={(e) => e.stopPropagation()}
               >
                 <button
                   onClick={() => setSelectedProject(null)}
-                  className="absolute top-2 right-2 p-2 bg-white/10 hover:bg-white/20 rounded-full text-white z-50"
+                  className="absolute top-2 sm:top-4 right-2 sm:right-4 p-1 sm:p-2 bg-white/10 hover:bg-white/20 rounded-full text-white z-50"
                 >
-                  <X className="w-6 h-6" />
+                  <X className="w-6 sm:w-8 h-6 sm:h-8" />
                 </button>
 
-                <div className="relative flex items-center justify-center p-4 bg-black/50">
+                <div className="relative h-[60vh] sm:h-[70vh] w-full bg-black">
                   <button
                     onClick={handlePrevImage}
-                    className="absolute left-4 p-2 bg-white/10 hover:bg-white/20 rounded-full text-white z-10 transform transition-transform hover:scale-110"
+                    className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 p-1 sm:p-2 bg-white/10 hover:bg-white/20 rounded-full text-white z-10 transform transition-transform hover:scale-110"
                   >
-                    <ChevronLeft className="w-6 h-6" />
+                    <ChevronLeft className="w-6 sm:w-8 h-6 sm:h-8" />
                   </button>
 
                   <img
@@ -285,22 +285,22 @@ const ProjectsPage = () => {
                     alt={`${selectedProject.name} - Image ${
                       currentImageIndex + 1
                     }`}
-                    className="w-full h-48 md:h-64 lg:h-[60vh] object-contain"
+                    className="w-full h-full object-contain p-2 sm:p-4"
                   />
 
                   <button
                     onClick={handleNextImage}
-                    className="absolute right-4 p-2 bg-white/10 hover:bg-white/20 rounded-full text-white z-10 transform transition-transform hover:scale-110"
+                    className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-1 sm:p-2 bg-white/10 hover:bg-white/20 rounded-full text-white z-10 transform transition-transform hover:scale-110"
                   >
-                    <ChevronRight className="w-6 h-6" />
+                    <ChevronRight className="w-6 sm:w-8 h-6 sm:h-8" />
                   </button>
 
-                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+                  <div className="absolute bottom-2 sm:bottom-4 left-1/2 -translate-x-1/2 flex gap-1 sm:gap-2">
                     {selectedProject.fullImages.map((_, index) => (
                       <button
                         key={index}
                         onClick={() => setCurrentImageIndex(index)}
-                        className={`w-2 h-2 rounded-full transition-all ${
+                        className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all ${
                           currentImageIndex === index
                             ? "bg-white scale-125"
                             : "bg-white/30"
@@ -310,23 +310,18 @@ const ProjectsPage = () => {
                   </div>
                 </div>
 
-                <div className="p-4 md:p-6 lg:p-8 text-white flex flex-col justify-between space-y-4 overflow-y-auto">
-                  <div>
-                    <h2 className="text-xl md:text-2xl lg:text-3xl font-bold mb-3 text-center lg:text-left">
+                <div className="p-4 sm:p-6 md:p-8 space-y-2 sm:space-y-4 bg-black/80">
+                  <div className="text-center">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-1 sm:mb-2">
                       {selectedProject.name}
                     </h2>
-                    <p className="text-gray-300 mb-4 text-sm md:text-base leading-relaxed text-center lg:text-left">
-                      {selectedProject.description}
+                    <p className="text-xs sm:text-sm md:text-base text-purple-400 font-medium">
+                      {selectedProject.category}
                     </p>
                   </div>
-                  <div className="bg-white/10 p-3 rounded-lg mx-auto lg:mx-0 w-full md:w-auto">
-                    <span className="text-sm md:text-base text-gray-400 font-medium">
-                      Category:
-                    </span>
-                    <span className="text-sm md:text-base text-white ml-2">
-                      {selectedProject.category}
-                    </span>
-                  </div>
+                  <p className="text-gray-300 text-xs sm:text-sm md:text-base leading-relaxed text-center max-w-2xl mx-auto">
+                    {selectedProject.description}
+                  </p>
                 </div>
               </motion.div>
             </motion.div>
@@ -338,7 +333,7 @@ const ProjectsPage = () => {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="bg-gray-700 rounded-xl p-6 md:p-8 lg:p-12 mt-8 md:mt-12 lg:mt-16 text-center mx-2"
+          className="bg-gray-700 rounded-xl p-4 sm:p-6 md:p-8 lg:p-12 mt-6 sm:mt-8 md:mt-12 lg:mt-16 text-center mx-1 sm:mx-2"
         >
           <h2 className="text-xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4 lg:mb-6 text-white">
             Let&apos;s Discuss Your Project
